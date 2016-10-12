@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Routing;
 using Microsoft.AspNet.SignalR;
 
 namespace SMETA.DataScraper.Hubs
 {
-    public class TweetHub
+    public class TweetHub : Hub
     {
-        public void Send(string name, string message)
+        public void PostTweet(string name, string handle, string message)
         {
-            // Call the broadcastMessage method to update clients.
-            Clients.All.broadcastMessage(name, message);
+            IHubContext context = GlobalHost.ConnectionManager.GetHubContext<TweetHub>();
+            context.Clients.All.broadcastMessage(name, handle, message);
         }
     }
 }

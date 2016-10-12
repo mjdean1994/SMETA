@@ -1,0 +1,1 @@
+C:\Users\Leo\Documents\GitHub\SMETA\DataScraper\SMETA.DataScraper.Tests\obj\Debug\SMETA.DataScraper.Tests.csprojResolveAssemblyReference.cache

@@ -10,4 +10,23 @@
             <small>The Data Scraper is working properly! New tweets are being streamed into the system!</small>
         </h1>
     </div>
+    
+    <hr/>
+    
+    <h3>Recent Tweets <span class="badge" id="tweetCount">0</span></h3>
+    <ul class="list-group" id="tweetList" style="max-height: 400px; overflow-y: auto;">
+        
+    </ul>
 </div>
+
+
+@section Scripts
+{
+    <script src="@Url.Content("~/signalr/hubs")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Modules/index.js")"></script>
+    <script>
+        $(document).ready(function() {
+            indexModule.init();
+        })
+    </script>    
+}

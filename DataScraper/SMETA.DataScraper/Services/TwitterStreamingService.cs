@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Web.Configuration;
+using SMETA.DataScraper.Hubs;
 using Tweetinvi;
 using Tweetinvi.Models;
 using Tweetinvi.Streaming;
@@ -39,7 +40,8 @@ namespace SMETA.DataScraper.Services
 
         private static void TweetReceived(object sender, Tweetinvi.Events.TweetReceivedEventArgs e)
         {
-            // Do Nothing
+            TweetHub hub = new TweetHub();
+            hub.PostTweet(e.Tweet.CreatedBy.Name, e.Tweet.CreatedBy.ScreenName, e.Tweet.Text);
         }
 
         public static void StartStream()

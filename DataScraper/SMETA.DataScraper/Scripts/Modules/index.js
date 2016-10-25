@@ -16,6 +16,18 @@
         $.connection.hub.start().done(function () {
             // Nothing needed, we're only receiving
         });
+
+        $("#toggleStream").click(function () {
+            $.post("/home/togglestream")
+            .done(function (data) {
+                location.reload();
+            })
+            .fail(function () {
+                toastr.error("An error occurred while trying to toggle the stream.");
+            });
+
+            
+        });
     },
     count: 0
 };

@@ -7,6 +7,7 @@ using SMETA.DataScraper.Hubs;
 using Tweetinvi;
 using Tweetinvi.Models;
 using Tweetinvi.Streaming;
+using SMETA.DataAccess.Repositories;
 
 namespace SMETA.DataScraper.Services
 {
@@ -23,6 +24,7 @@ namespace SMETA.DataScraper.Services
         private static string _consumerSecret;
         private static string _accessToken;
         private static string _accessSecret;
+        private static PostRepository _postRepository;
 
         private static void _initializeStream()
         {
@@ -33,8 +35,10 @@ namespace SMETA.DataScraper.Services
 
             Auth.SetUserCredentials(_consumerKey, _consumerSecret, _accessToken, _accessSecret);
 
+            _postRepository = new PostRepository();
+
             _stream = Stream.CreateSampleStream(Auth.Credentials);
-            _stream.AddTweetLanguageFilter(LanguageFilter.English);
+            _stream.AddTweetLanguageFilter(Language.English);
             _stream.TweetReceived += TweetReceived;
         }
 
@@ -42,6 +46,7 @@ namespace SMETA.DataScraper.Services
         {
             TweetHub hub = new TweetHub();
             hub.PostTweet(e.Tweet.CreatedBy.Name, e.Tweet.CreatedBy.ScreenName, e.Tweet.Text);
+            _postRepository.InsertPost(e.Tweet);
         }
 
         public static void StartStream()
@@ -53,12 +58,14 @@ namespace SMETA.DataScraper.Services
 
             _streamThread = new Thread(new ThreadStart(_stream.StartStream));
             _streamThread.Start();
+            Status = true;
         }
 
         public static void StopStream()
         {
             _stream.StopStream();
             _streamThread.Abort();
+            Status = false;
         }
     }
 }

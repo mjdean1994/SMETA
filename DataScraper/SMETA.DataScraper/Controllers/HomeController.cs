@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SMETA.DataScraper.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +11,23 @@ namespace SMETA.DataScraper.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.Status = TwitterStreamingService.Status;
             return View();
+        }
+
+        [HttpPost]
+        public JsonResult ToggleStream()
+        {
+            if(TwitterStreamingService.Status)
+            {
+                TwitterStreamingService.StopStream();
+            }
+            else
+            {
+                TwitterStreamingService.StartStream();
+            }
+
+            return Json(new { success = true });
         }
     }
 }

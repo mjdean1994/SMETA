@@ -9,7 +9,7 @@ namespace SMETA.DataScraper
     {
         public void Configuration(IAppBuilder app)
         {
-            TwitterStreamingService.StartStream();
+            //TwitterStreamingService.StartStream();
             app.MapSignalR();
         }
     }

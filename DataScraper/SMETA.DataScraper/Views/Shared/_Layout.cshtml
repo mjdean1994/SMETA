@@ -20,6 +20,15 @@
                 @Html.ActionLink("SMETA", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <p class="navbar-text">Data Scraper Health Monitor</p>
+            @if (ViewBag.Status)
+            {
+                <button type="button" id="toggleStream" class="btn btn-danger navbar-btn navbar-right" data-toggle="tooltip" data-placement="bottom" title="Stop Stream"><i class="fa fa-stop"></i></button>
+            }
+            else
+            {
+                <button type="button" id="toggleStream" class="btn btn-success navbar-btn navbar-right" data-toggle="tooltip" data-placement="bottom" title="Start Stream"><i class="fa fa-play"></i></button>
+            }
+
         </div>
     </div>
     <div class="container body-content">
@@ -28,6 +37,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/toastr");
     @RenderSection("scripts", required: false)
 </body>
 </html>

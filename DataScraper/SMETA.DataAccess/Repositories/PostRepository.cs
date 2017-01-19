@@ -1,5 +1,6 @@
 ﻿using MongoDB.Driver;
 using System.Collections.Generic;
+using System.Security.Authentication;
 using SMETA.DataAccess.Models;
 using Tweetinvi.Models;
 
@@ -12,7 +13,13 @@ namespace SMETA.DataAccess.Repositories
         
         public PostRepository()
         {
-            _client = new MongoClient(Configuration.POST_DB_CONNECTION_STRING);
+            MongoClientSettings settings = MongoClientSettings.FromUrl(
+              new MongoUrl(Configuration.POST_DB_CONNECTION_STRING)
+            );
+            settings.SslSettings =
+              new SslSettings() { EnabledSslProtocols = SslProtocols.Tls12 };
+
+            _client = new MongoClient(settings);
             _database = _client.GetDatabase(Configuration.POST_DB_NAME);
         }
 

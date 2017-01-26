@@ -34,11 +34,18 @@ namespace SMETA.DataAccess.Repositories
             return collection.Find(x => x.Username == username).ToList();
         }
 
-        public void InsertPost(ITweet tweet)
+        public void InsertPosts(List<ITweet> tweets)
         {
-            Post post = new Post(tweet);
+            List<Post> posts = new List<Post>();
+
+            foreach(var tweet in tweets)
+            {
+                Post post = new Post(tweet);
+                posts.Add(post);
+            }
+            
             IMongoCollection<Post> collection = _database.GetCollection<Post>("posts");
-            collection.InsertOne(post);
+            collection.InsertMany(posts);
         }
     }
 }

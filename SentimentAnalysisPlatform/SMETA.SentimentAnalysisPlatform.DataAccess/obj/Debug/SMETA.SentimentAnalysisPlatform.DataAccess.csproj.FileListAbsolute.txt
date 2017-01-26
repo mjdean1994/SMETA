@@ -1,0 +1,10 @@
+C:\Users\Matt\Documents\Visual Studio 2015\Projects\SentimentAnalysisPlatform\SMETA.SentimentAnalysisPlatform.DataAccess\bin\Debug\SMETA.SentimentAnalysisPlatform.DataAccess.dll.config
+C:\Users\Matt\Documents\Visual Studio 2015\Projects\SentimentAnalysisPlatform\SMETA.SentimentAnalysisPlatform.DataAccess\bin\Debug\SMETA.SentimentAnalysisPlatform.DataAccess.dll
+C:\Users\Matt\Documents\Visual Studio 2015\Projects\SentimentAnalysisPlatform\SMETA.SentimentAnalysisPlatform.DataAccess\bin\Debug\SMETA.SentimentAnalysisPlatform.DataAccess.pdb
+C:\Users\Matt\Documents\Visual Studio 2015\Projects\SentimentAnalysisPlatform\SMETA.SentimentAnalysisPlatform.DataAccess\bin\Debug\EntityFramework.dll
+C:\Users\Matt\Documents\Visual Studio 2015\Projects\SentimentAnalysisPlatform\SMETA.SentimentAnalysisPlatform.DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Matt\Documents\Visual Studio 2015\Projects\SentimentAnalysisPlatform\SMETA.SentimentAnalysisPlatform.DataAccess\bin\Debug\EntityFramework.xml
+C:\Users\Matt\Documents\Visual Studio 2015\Projects\SentimentAnalysisPlatform\SMETA.SentimentAnalysisPlatform.DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Matt\Documents\Visual Studio 2015\Projects\SentimentAnalysisPlatform\SMETA.SentimentAnalysisPlatform.DataAccess\obj\Debug\SMETA.SentimentAnalysisPlatform.DataAccess.csprojResolveAssemblyReference.cache
+C:\Users\Matt\Documents\Visual Studio 2015\Projects\SentimentAnalysisPlatform\SMETA.SentimentAnalysisPlatform.DataAccess\obj\Debug\SMETA.SentimentAnalysisPlatform.DataAccess.dll
+C:\Users\Matt\Documents\Visual Studio 2015\Projects\SentimentAnalysisPlatform\SMETA.SentimentAnalysisPlatform.DataAccess\obj\Debug\SMETA.SentimentAnalysisPlatform.DataAccess.pdb

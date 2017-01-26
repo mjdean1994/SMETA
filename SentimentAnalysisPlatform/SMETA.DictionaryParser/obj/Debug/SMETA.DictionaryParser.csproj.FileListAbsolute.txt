@@ -1,0 +1,12 @@
+c:\users\matt\documents\visual studio 2015\Projects\SentimentAnalysisPlatform\SMETA.DictionaryParser\bin\Debug\SMETA.DictionaryParser.exe.config
+C:\Users\Matt\Documents\Visual Studio 2015\Projects\SentimentAnalysisPlatform\SMETA.DictionaryParser\bin\Debug\SMETA.DictionaryParser.exe
+C:\Users\Matt\Documents\Visual Studio 2015\Projects\SentimentAnalysisPlatform\SMETA.DictionaryParser\bin\Debug\SMETA.DictionaryParser.pdb
+C:\Users\Matt\Documents\Visual Studio 2015\Projects\SentimentAnalysisPlatform\SMETA.DictionaryParser\bin\Debug\SMETA.SentimentAnalysisPlatform.DataAccess.dll
+C:\Users\Matt\Documents\Visual Studio 2015\Projects\SentimentAnalysisPlatform\SMETA.DictionaryParser\bin\Debug\EntityFramework.dll
+C:\Users\Matt\Documents\Visual Studio 2015\Projects\SentimentAnalysisPlatform\SMETA.DictionaryParser\bin\Debug\SMETA.SentimentAnalysisPlatform.DataAccess.pdb
+C:\Users\Matt\Documents\Visual Studio 2015\Projects\SentimentAnalysisPlatform\SMETA.DictionaryParser\bin\Debug\EntityFramework.xml
+C:\Users\Matt\Documents\Visual Studio 2015\Projects\SentimentAnalysisPlatform\SMETA.DictionaryParser\obj\Debug\SMETA.DictionaryParser.csprojResolveAssemblyReference.cache
+C:\Users\Matt\Documents\Visual Studio 2015\Projects\SentimentAnalysisPlatform\SMETA.DictionaryParser\obj\Debug\SMETA.DictionaryParser.exe
+C:\Users\Matt\Documents\Visual Studio 2015\Projects\SentimentAnalysisPlatform\SMETA.DictionaryParser\obj\Debug\SMETA.DictionaryParser.pdb
+C:\Users\Matt\Documents\Visual Studio 2015\Projects\SentimentAnalysisPlatform\SMETA.DictionaryParser\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Matt\Documents\Visual Studio 2015\Projects\SentimentAnalysisPlatform\SMETA.DictionaryParser\bin\Debug\EntityFramework.SqlServer.xml

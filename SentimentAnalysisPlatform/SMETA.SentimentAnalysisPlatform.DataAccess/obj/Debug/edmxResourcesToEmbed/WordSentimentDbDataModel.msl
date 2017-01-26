@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WordSentimentDbModelStoreContainer" CdmEntityContainer="WordSentimentDbEntities">
+    <EntitySetMapping Name="WordSentiments">
+      <EntityTypeMapping TypeName="WordSentimentDbModel.WordSentiment">
+        <MappingFragment StoreEntitySet="WordSentiment">
+          <ScalarProperty Name="WordId" ColumnName="WordId" />
+          <ScalarProperty Name="Word" ColumnName="Word" />
+          <ScalarProperty Name="Positive" ColumnName="Positive" />
+          <ScalarProperty Name="Negative" ColumnName="Negative" />
+          <ScalarProperty Name="Anger" ColumnName="Anger" />
+          <ScalarProperty Name="Anticipation" ColumnName="Anticipation" />
+          <ScalarProperty Name="Disgust" ColumnName="Disgust" />
+          <ScalarProperty Name="Fear" ColumnName="Fear" />
+          <ScalarProperty Name="Joy" ColumnName="Joy" />
+          <ScalarProperty Name="Sadness" ColumnName="Sadness" />
+          <ScalarProperty Name="Surprise" ColumnName="Surprise" />
+          <ScalarProperty Name="Trust" ColumnName="Trust" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

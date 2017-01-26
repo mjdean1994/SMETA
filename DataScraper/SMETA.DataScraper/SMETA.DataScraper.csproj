@@ -278,6 +278,8 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
+    <None Include="Properties\PublishProfiles\smeta-datascraper - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\smeta-datascraper - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -324,9 +326,9 @@
     <Content Include="Scripts\jquery-3.1.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SMETA.DataAccess\SMETA.DataAccess.csproj">
+    <ProjectReference Include="..\SMETA.DataAccess\SMETA.DataScraper.DataAccess.csproj">
       <Project>{299a9e82-e928-4cd4-a424-9bee854e1c63}</Project>
-      <Name>SMETA.DataAccess</Name>
+      <Name>SMETA.DataScraper.DataAccess</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

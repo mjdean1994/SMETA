@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMETA.DataScraper", "SMETA.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMETA.DataScraper.Tests", "SMETA.DataScraper.Tests\SMETA.DataScraper.Tests.csproj", "{506916E4-AA3B-4A6F-A4CE-1627A9E703C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMETA.DataAccess", "SMETA.DataAccess\SMETA.DataAccess.csproj", "{299A9E82-E928-4CD4-A424-9BEE854E1C63}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMETA.DataScraper.DataAccess", "SMETA.DataAccess\SMETA.DataScraper.DataAccess.csproj", "{299A9E82-E928-4CD4-A424-9BEE854E1C63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

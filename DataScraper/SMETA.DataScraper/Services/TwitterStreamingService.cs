@@ -25,6 +25,8 @@ namespace SMETA.DataScraper.Services
         private static string _accessToken;
         private static string _accessSecret;
         private static PostRepository _postRepository;
+        private static List<ITweet> _tweetBuffer;
+        private static int BUFFER_MAX = 10000;
 
         private static void _initializeStream()
         {
@@ -40,13 +42,19 @@ namespace SMETA.DataScraper.Services
             _stream = Stream.CreateSampleStream(Auth.Credentials);
             _stream.AddTweetLanguageFilter(Language.English);
             _stream.TweetReceived += TweetReceived;
+            _tweetBuffer = new List<ITweet>();
         }
 
         private static void TweetReceived(object sender, Tweetinvi.Events.TweetReceivedEventArgs e)
         {
             TweetHub hub = new TweetHub();
             hub.PostTweet(e.Tweet.CreatedBy.Name, e.Tweet.CreatedBy.ScreenName, e.Tweet.Text);
-            _postRepository.InsertPost(e.Tweet);
+            _tweetBuffer.Add(e.Tweet);
+
+            if(_tweetBuffer.Count > BUFFER_MAX)
+            {
+                _postRepository.InsertPosts(_tweetBuffer);
+            }
         }
 
         public static void StartStream()
@@ -66,6 +74,9 @@ namespace SMETA.DataScraper.Services
             _stream.StopStream();
             _streamThread.Abort();
             Status = false;
+
+            //clear the buffer
+            _postRepository.InsertPosts(_tweetBuffer);
         }
     }
 }

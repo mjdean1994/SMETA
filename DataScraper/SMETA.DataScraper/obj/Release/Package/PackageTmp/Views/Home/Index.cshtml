@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "Data Scraper Status Monitor";
+}
+
+<div class="jumbotron">
+    <div class="row">
+        @if (ViewBag.Status)
+        {
+            <h1>
+                <span class="text-success"><i class="fa fa-check"></i> Online</span>
+                <br />
+                <small>The Data Scraper is working properly! New tweets are being streamed into the system!</small>
+            </h1>
+        }
+        else
+        {
+            <h1>
+                <span class="text-danger"><i class="fa fa-times"></i> Offline</span>
+                <br />
+                <small>The Data Scraper is currently stopped. Click the green button in the top-right corner to start the stream.</small>
+            </h1>
+        }
+        
+    </div>
+    
+    @if (ViewBag.Status)
+    {
+        <hr />
+        <h3>Recent Tweets <span class="badge" id="tweetCount">0</span></h3>
+        <ul class="list-group" id="tweetList" style="max-height: 400px; overflow-y: auto;"></ul>
+    }
+</div>
+
+
+@section Scripts
+{
+    <script src="@Url.Content("~/signalr/hubs")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Modules/index.js")"></script>
+    <script>
+        $(document).ready(function() {
+            indexModule.init();
+            $('[data-toggle="tooltip"]').tooltip();
+        })
+    </script>    
+}

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WordSentimentDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="WordSentiment">
+    <Key>
+      <PropertyRef Name="WordId" />
+    </Key>
+    <Property Name="WordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Word" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Positive" Type="Int32" />
+    <Property Name="Negative" Type="Int32" />
+    <Property Name="Anger" Type="Int32" />
+    <Property Name="Anticipation" Type="Int32" />
+    <Property Name="Disgust" Type="Int32" />
+    <Property Name="Fear" Type="Int32" />
+    <Property Name="Joy" Type="Int32" />
+    <Property Name="Sadness" Type="Int32" />
+    <Property Name="Surprise" Type="Int32" />
+    <Property Name="Trust" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="WordSentimentDbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="WordSentiments" EntityType="Self.WordSentiment" />
+  </EntityContainer>
+</Schema>

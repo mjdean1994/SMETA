@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="WordSentimentDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="WordSentiment">
+          <Key>
+            <PropertyRef Name="WordId" />
+          </Key>
+          <Property Name="WordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Word" Type="varchar" MaxLength="50" />
+          <Property Name="Positive" Type="int" />
+          <Property Name="Negative" Type="int" />
+          <Property Name="Anger" Type="int" />
+          <Property Name="Anticipation" Type="int" />
+          <Property Name="Disgust" Type="int" />
+          <Property Name="Fear" Type="int" />
+          <Property Name="Joy" Type="int" />
+          <Property Name="Sadness" Type="int" />
+          <Property Name="Surprise" Type="int" />
+          <Property Name="Trust" Type="int" />
+        </EntityType>
+        <EntityContainer Name="WordSentimentDbModelStoreContainer">
+          <EntitySet Name="WordSentiment" EntityType="Self.WordSentiment" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WordSentimentDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="WordSentiment">
+          <Key>
+            <PropertyRef Name="WordId" />
+          </Key>
+          <Property Name="WordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Word" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Positive" Type="Int32" />
+          <Property Name="Negative" Type="Int32" />
+          <Property Name="Anger" Type="Int32" />
+          <Property Name="Anticipation" Type="Int32" />
+          <Property Name="Disgust" Type="Int32" />
+          <Property Name="Fear" Type="Int32" />
+          <Property Name="Joy" Type="Int32" />
+          <Property Name="Sadness" Type="Int32" />
+          <Property Name="Surprise" Type="Int32" />
+          <Property Name="Trust" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="SentimentDictionaryDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="WordSentiments" EntityType="Self.WordSentiment" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WordSentimentDbModelStoreContainer" CdmEntityContainer="SentimentDictionaryDbEntities">
+          <EntitySetMapping Name="WordSentiments">
+            <EntityTypeMapping TypeName="WordSentimentDbModel.WordSentiment">
+              <MappingFragment StoreEntitySet="WordSentiment">
+                <ScalarProperty Name="WordId" ColumnName="WordId" />
+                <ScalarProperty Name="Word" ColumnName="Word" />
+                <ScalarProperty Name="Positive" ColumnName="Positive" />
+                <ScalarProperty Name="Negative" ColumnName="Negative" />
+                <ScalarProperty Name="Anger" ColumnName="Anger" />
+                <ScalarProperty Name="Anticipation" ColumnName="Anticipation" />
+                <ScalarProperty Name="Disgust" ColumnName="Disgust" />
+                <ScalarProperty Name="Fear" ColumnName="Fear" />
+                <ScalarProperty Name="Joy" ColumnName="Joy" />
+                <ScalarProperty Name="Sadness" ColumnName="Sadness" />
+                <ScalarProperty Name="Surprise" ColumnName="Surprise" />
+                <ScalarProperty Name="Trust" ColumnName="Trust" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

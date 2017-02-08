@@ -18,7 +18,7 @@
     var xAxis = d3.svg.axis()
         .scale(x)
         .orient("bottom")
-        .ticks(10);
+        .ticks(5);
 
     var yAxis = d3.svg.axis()
         .scale(y)
@@ -29,6 +29,12 @@
     var sentiment_line = d3.svg.line()
         .x(function(d) { return x(d.date); })
         .y(function(d) { return y(d.positive); });
+
+    // Add tooltip div, MAKE SIZE RESPONSIVE
+    var tooltip = d3.select("#graph")
+        .append("div")
+        .attr("class", "tooltip")
+        .style("opacity", 0);
 
     // Adds the svg canvas
     var svg = d3.select("#graph")
@@ -42,7 +48,7 @@
         .attr("transform",
             "translate(" + margin.left + "," + margin.top + ")");
 
-    // Get the data because I don't know how to use hardcoded data
+    //GET DEFAULT DATA
     d3.csv("../SampleData/data.csv",
         function(error, data) {
             data.forEach(function(d) {
@@ -55,11 +61,23 @@
             y.domain([0, d3.max(data, function(d) { return d.positive; })]);
 
             // Add data line
-            svg.append("path")
+            var line = svg.append("path")
                 .attr("class", "line")
                 .attr("d", sentiment_line(data))
-                .attr("id", "dataLine");
-
+                .attr("id", "dataLine")
+                .on("mouseover", function (data) {
+                    tooltip.transition()
+                        .duration(200)
+                        .style("opacity", .9);
+                    tooltip.html("<p>hmm" + "</p>") //use data at cursor
+                        .style("left", (d3.event.pageX - 70) + "px")
+                        .style("top", (d3.event.pageY - 220) + "px");
+                })
+                .on("mouseout", function (d) {
+                    tooltip.transition()
+                        .duration(500)
+                        .style("opacity", 0);
+                });;
 
             // Add the X Axis
             svg.append("g")
@@ -72,3 +90,4 @@
 
         });
 }
+

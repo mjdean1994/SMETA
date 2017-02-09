@@ -1,6 +1,6 @@
 ﻿function getGraph() {
     // dont hardcode data because fuck hardcoded data
-    /* use v3 instead of v4 */
+    /* use v3 instead of v4, more documentation on it */
 
     // Set the dimensions of the canvas / graph
     var margin = { top: 20, right: 0, bottom: 30, left: 50 },
@@ -9,6 +9,9 @@
 
     // Parse the date / time
     var parseDate = d3.time.format("%d-%b-%y").parse;
+
+    //Format date/time - SEE TOOLTIPS
+    var formatDate = d3.time.format("Date: %x \nTime: %H:%M%p");
 
     // Set range first, or it won't work
     var x = d3.time.scale().range([0, width]);
@@ -48,9 +51,10 @@
         .attr("transform",
             "translate(" + margin.left + "," + margin.top + ")");
 
-    //GET DEFAULT DATA
-    d3.csv("../SampleData/data.csv",
-        function(error, data) {
+    //check mongodb query results, != JSON format
+    d3.json("../SampleData/data.json",
+        function (error, data) {
+            console.log(data);
             data.forEach(function(d) {
                 d.date = parseDate(d.date);
                 d.positive = +d.positive;
@@ -61,23 +65,38 @@
             y.domain([0, d3.max(data, function(d) { return d.positive; })]);
 
             // Add data line
-            var line = svg.append("path")
+            svg.append("path")
                 .attr("class", "line")
-                .attr("d", sentiment_line(data))
-                .attr("id", "dataLine")
-                .on("mouseover", function (data) {
-                    tooltip.transition()
-                        .duration(200)
-                        .style("opacity", .9);
-                    tooltip.html("<p>hmm" + "</p>") //use data at cursor
-                        .style("left", (d3.event.pageX - 70) + "px")
-                        .style("top", (d3.event.pageY - 220) + "px");
-                })
-                .on("mouseout", function (d) {
-                    tooltip.transition()
-                        .duration(500)
-                        .style("opacity", 0);
-                });;
+                .attr("d", sentiment_line(data));
+
+            /* 
+            * Scatterplot 
+            * So tooltip can use data values
+            */
+            svg.selectAll("dot")
+                .data(data)
+                .enter()
+                .append("circle")
+                    .attr("r", 3) //make it bigger when hovering?
+                    .attr("cx", function(d) { return x(d.date); })
+                    .attr("cy", function(d) { return y(d.positive); })
+                    .attr("id", "dataPlots")
+                    // tooltip bit
+                    .on("mouseover", function (d) {
+                        tooltip.transition()
+                            .duration(200)
+                            .style("opacity", .9);
+                       
+                        tooltip.html(formatDate(d.date) + "<br/>Positivity: " + d.positive)
+                            .style("left", (d3.event.pageX - 70) + "px")
+                            .style("top", (d3.event.pageY - 220) + "px");
+                        //make radius of circle bigger.
+                    })
+                    .on("mouseout", function (d) {
+                        tooltip.transition()
+                            .duration(250)
+                            .style("opacity", 0);
+                    });
 
             // Add the X Axis
             svg.append("g")

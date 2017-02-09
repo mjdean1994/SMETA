@@ -45,13 +45,24 @@ text {
     stroke: grey;
 }
 
+circle:hover {
+    border-radius: 25px;        
+}
+
 .bold {
     font-weight: bold;
     font-variant: small-caps;
 }
 
-#dataLine:hover {
-    stroke-width: 2px;
+#dataPlots {
+    fill: steelblue;
+}
+
+#dataPlots:hover {
+    width: 10px;
+    height: 10px;
+    fill: black;
+    stroke-width: 8px;
 }
 
 path.domain {
@@ -61,11 +72,12 @@ path.domain {
 div.tooltip {	
     position: absolute;			
     text-align: center;			
-    width: 100px;					
-    height: 60px;					
+    width: 150px;					
+    height: 65px;					
     padding: 5px;				
     font: 12px sans-serif;		
     background-color: lightblue;	
     border-radius: 4px;			
-    pointer-events: none;			
+    pointer-events: none;
+    color: black;	
 }

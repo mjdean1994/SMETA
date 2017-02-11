@@ -27,6 +27,9 @@ namespace SMETA.DataScraper.Services
         private static PostRepository _postRepository;
         private static List<ITweet> _tweetBuffer;
         private static int BUFFER_MAX = 10000;
+        private static int SAVE_THRESHOLD = 1;
+        private static int SAVE_INTERVAL = 100;
+        private static int _currentMarker;
 
         private static void _initializeStream()
         {
@@ -43,17 +46,28 @@ namespace SMETA.DataScraper.Services
             _stream.AddTweetLanguageFilter(Language.English);
             _stream.TweetReceived += TweetReceived;
             _tweetBuffer = new List<ITweet>();
+            _currentMarker = 1;
         }
 
         private static void TweetReceived(object sender, Tweetinvi.Events.TweetReceivedEventArgs e)
         {
-            TweetHub hub = new TweetHub();
-            hub.PostTweet(e.Tweet.CreatedBy.Name, e.Tweet.CreatedBy.ScreenName, e.Tweet.Text);
-            _tweetBuffer.Add(e.Tweet);
-
-            if(_tweetBuffer.Count > BUFFER_MAX)
+            if(_currentMarker <= SAVE_THRESHOLD)
             {
-                _postRepository.InsertPosts(_tweetBuffer);
+                TweetHub hub = new TweetHub();
+                hub.PostTweet(e.Tweet.CreatedBy.Name, e.Tweet.CreatedBy.ScreenName, e.Tweet.Text);
+                _tweetBuffer.Add(e.Tweet);
+
+                if (_tweetBuffer.Count > BUFFER_MAX)
+                {
+                    _postRepository.InsertPosts(_tweetBuffer);
+                }
+            }
+
+            _currentMarker++;
+
+            if(_currentMarker > SAVE_INTERVAL)
+            {
+                _currentMarker = 1;
             }
         }
 

@@ -10,3 +10,6 @@ C:\Users\Matt\Documents\Visual Studio 2015\Projects\SentimentAnalysisPlatform\SM
 C:\Users\Matt\Documents\Visual Studio 2015\Projects\SentimentAnalysisPlatform\SMETA.DictionaryParser\obj\Debug\SMETA.DictionaryParser.pdb
 C:\Users\Matt\Documents\Visual Studio 2015\Projects\SentimentAnalysisPlatform\SMETA.DictionaryParser\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Matt\Documents\Visual Studio 2015\Projects\SentimentAnalysisPlatform\SMETA.DictionaryParser\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Leo-PC\Documents\GitHub\smeta\SentimentAnalysisPlatform\SMETA.DictionaryParser\bin\Debug\SMETA.DictionaryParser.exe.config
+C:\Users\Leo-PC\Documents\GitHub\smeta\SentimentAnalysisPlatform\SMETA.DictionaryParser\obj\Debug\SMETA.DictionaryParser.exe
+C:\Users\Leo-PC\Documents\GitHub\smeta\SentimentAnalysisPlatform\SMETA.DictionaryParser\obj\Debug\SMETA.DictionaryParser.pdb

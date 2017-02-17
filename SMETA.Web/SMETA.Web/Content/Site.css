@@ -27,13 +27,69 @@ svg.graph {
     margin-left: 40px;
 }
 
-path {
-    stroke: steelblue;
+path.sentiment {
+    stroke: black;
+    stroke-width: 1;
+    fill: none;
+    pointer-events:all;
+}
+
+path.anger {
+    stroke: red;
+    stroke-width: 1;
+    fill: none;
+    pointer-events:all;
+}
+
+path.anticipation {
+    stroke: green;
+    stroke-width: 1;
+    fill: none;
+    pointer-events:all;
+}
+
+path.disgust {
+    stroke: brown;
+    stroke-width: 1;
+    fill: none;
+    pointer-events:all;
+}
+
+path.fear {
+    stroke: yellow;
+    stroke-width: 1;
+    fill: none;
+    pointer-events:all;
+}
+
+path.joy {
+    stroke: pink;
     stroke-width: 1;
     fill: none;
     pointer-events:all;
 }
  
+path.sadness {
+    stroke: steelblue;
+    stroke-width: 1;
+    fill: none;
+    pointer-events:all;
+}
+
+path.surprise {
+    stroke: turquoise;
+    stroke-width: 1;
+    fill: none;
+    pointer-events:all;
+}
+
+path.trust {
+    stroke: purple;
+    stroke-width: 1;
+    fill: none;
+    pointer-events:all;
+}
+
 line {
     stroke: grey;
     stroke-width: 1.5px;
@@ -67,6 +123,8 @@ circle:hover {
 
 path.domain {
     stroke: grey;
+    stroke-width: 2;
+    fill: none;
 }
 
 div.tooltip {	

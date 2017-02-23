@@ -1,6 +1,7 @@
 ﻿using Microsoft.Owin;
 using Owin;
 using SMETA.DataScraper.Services;
+using SMETA.DataAccess.Repositories;
 
 [assembly: OwinStartupAttribute(typeof(SMETA.DataScraper.Startup))]
 namespace SMETA.DataScraper
@@ -9,7 +10,6 @@ namespace SMETA.DataScraper
     {
         public void Configuration(IAppBuilder app)
         {
-            //TwitterStreamingService.StartStream();
             app.MapSignalR();
         }
     }

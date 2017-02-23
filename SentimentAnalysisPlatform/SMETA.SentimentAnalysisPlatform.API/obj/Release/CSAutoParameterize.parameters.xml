@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aspnet-SMETA.SentimentAnalysisPlatform.API-20170213035524.mdf;Initial Catalog=aspnet-SMETA.SentimentAnalysisPlatform.API-20170213035524;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Matt\\Documents\\GitHub\\SMETA\\SentimentAnalysisPlatform\\SMETA\.SentimentAnalysisPlatform\.API\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="SentimentDictionaryDbEntities-Web.config Connection String" description="SentimentDictionaryDbEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://SMETA.SentimentAnalysisPlatform.DataAccess/SentimentDictionaryDbDataModel.csdl|res://SMETA.SentimentAnalysisPlatform.DataAccess/SentimentDictionaryDbDataModel.ssdl|res://SMETA.SentimentAnalysisPlatform.DataAccess/SentimentDictionaryDbDataModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=smetacapstone.database.windows.net;initial catalog=WordSentimentDb;persist security info=True;user id=smeta;password=CcCapstone2017;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Matt\\Documents\\GitHub\\SMETA\\SentimentAnalysisPlatform\\SMETA\.SentimentAnalysisPlatform\.API\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='SentimentDictionaryDbEntities']/@connectionString" />
+  </parameter>
+</parameters>

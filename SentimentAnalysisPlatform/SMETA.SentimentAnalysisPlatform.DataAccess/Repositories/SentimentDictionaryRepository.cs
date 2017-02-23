@@ -17,5 +17,14 @@ namespace SMETA.SentimentAnalysisPlatform.DataAccess
                 context.SaveChanges();
             }
         }
+
+        public List<WordSentiment> SelectAll()
+        {
+            using (var context = new SentimentDictionaryDbEntities())
+            {
+                context.Database.Connection.Open();
+                return context.WordSentiments.ToList();
+            }
+        }
     }
 }

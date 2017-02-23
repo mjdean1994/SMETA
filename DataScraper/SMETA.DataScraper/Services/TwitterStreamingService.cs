@@ -8,6 +8,7 @@ using Tweetinvi;
 using Tweetinvi.Models;
 using Tweetinvi.Streaming;
 using SMETA.DataAccess.Repositories;
+using SMETA.DataAccess.Models;
 
 namespace SMETA.DataScraper.Services
 {
@@ -25,8 +26,8 @@ namespace SMETA.DataScraper.Services
         private static string _accessToken;
         private static string _accessSecret;
         private static PostRepository _postRepository;
-        private static List<ITweet> _tweetBuffer;
-        private static int BUFFER_MAX = 10000;
+        private static List<Post> _tweetBuffer;
+        private static int BUFFER_MAX = 100;
         private static int SAVE_THRESHOLD = 1;
         private static int SAVE_INTERVAL = 100;
         private static int _currentMarker;
@@ -45,7 +46,7 @@ namespace SMETA.DataScraper.Services
             _stream = Stream.CreateSampleStream(Auth.Credentials);
             _stream.AddTweetLanguageFilter(Language.English);
             _stream.TweetReceived += TweetReceived;
-            _tweetBuffer = new List<ITweet>();
+            _tweetBuffer = new List<Post>();
             _currentMarker = 1;
         }
 
@@ -55,11 +56,13 @@ namespace SMETA.DataScraper.Services
             {
                 TweetHub hub = new TweetHub();
                 hub.PostTweet(e.Tweet.CreatedBy.Name, e.Tweet.CreatedBy.ScreenName, e.Tweet.Text);
-                _tweetBuffer.Add(e.Tweet);
+                _tweetBuffer.Add(AnalyzeTweet(e.Tweet));
 
                 if (_tweetBuffer.Count > BUFFER_MAX)
                 {
+                    _stream.StopStream();
                     _postRepository.InsertPosts(_tweetBuffer);
+                    _streamThread.Start();
                 }
             }
 
@@ -69,6 +72,15 @@ namespace SMETA.DataScraper.Services
             {
                 _currentMarker = 1;
             }
+        }
+
+        private static Post AnalyzeTweet(ITweet tweet)
+        {
+            Post post = new Post(tweet);
+
+            post.AddSentimentValues(SentimentAnalysisService.GetSentiment(post.Text));
+
+            return post;
         }
 
         public static void StartStream()

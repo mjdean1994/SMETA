@@ -10,3 +10,15 @@ C:\Users\Matt\Documents\Visual Studio 2015\Projects\SentimentAnalysisPlatform\SM
 C:\Users\Matt\Documents\Visual Studio 2015\Projects\SentimentAnalysisPlatform\SMETA.DictionaryParser\obj\Debug\SMETA.DictionaryParser.pdb
 C:\Users\Matt\Documents\Visual Studio 2015\Projects\SentimentAnalysisPlatform\SMETA.DictionaryParser\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Matt\Documents\Visual Studio 2015\Projects\SentimentAnalysisPlatform\SMETA.DictionaryParser\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Matt\Documents\GitHub\SMETA\SentimentAnalysisPlatform\SMETA.DictionaryParser\bin\Debug\SMETA.DictionaryParser.exe.config
+C:\Users\Matt\Documents\GitHub\SMETA\SentimentAnalysisPlatform\SMETA.DictionaryParser\obj\Debug\SMETA.DictionaryParser.exe
+C:\Users\Matt\Documents\GitHub\SMETA\SentimentAnalysisPlatform\SMETA.DictionaryParser\obj\Debug\SMETA.DictionaryParser.pdb
+C:\Users\Matt\Documents\GitHub\SMETA\SentimentAnalysisPlatform\SMETA.DictionaryParser\bin\Debug\SMETA.DictionaryParser.exe
+C:\Users\Matt\Documents\GitHub\SMETA\SentimentAnalysisPlatform\SMETA.DictionaryParser\bin\Debug\SMETA.DictionaryParser.pdb
+C:\Users\Matt\Documents\GitHub\SMETA\SentimentAnalysisPlatform\SMETA.DictionaryParser\bin\Debug\EntityFramework.dll
+C:\Users\Matt\Documents\GitHub\SMETA\SentimentAnalysisPlatform\SMETA.DictionaryParser\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Matt\Documents\GitHub\SMETA\SentimentAnalysisPlatform\SMETA.DictionaryParser\bin\Debug\SMETA.SentimentAnalysisPlatform.DataAccess.dll
+C:\Users\Matt\Documents\GitHub\SMETA\SentimentAnalysisPlatform\SMETA.DictionaryParser\bin\Debug\SMETA.SentimentAnalysisPlatform.DataAccess.pdb
+C:\Users\Matt\Documents\GitHub\SMETA\SentimentAnalysisPlatform\SMETA.DictionaryParser\bin\Debug\EntityFramework.xml
+C:\Users\Matt\Documents\GitHub\SMETA\SentimentAnalysisPlatform\SMETA.DictionaryParser\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Matt\Documents\GitHub\SMETA\SentimentAnalysisPlatform\SMETA.DictionaryParser\obj\Debug\SMETA.DictionaryParser.csprojResolveAssemblyReference.cache

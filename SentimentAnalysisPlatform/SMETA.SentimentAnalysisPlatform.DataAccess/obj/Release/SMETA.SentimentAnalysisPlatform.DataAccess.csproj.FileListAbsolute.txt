@@ -1,0 +1,10 @@
+C:\Users\Matt\Documents\GitHub\SMETA\SentimentAnalysisPlatform\SMETA.SentimentAnalysisPlatform.DataAccess\bin\Release\SMETA.SentimentAnalysisPlatform.DataAccess.dll.config
+C:\Users\Matt\Documents\GitHub\SMETA\SentimentAnalysisPlatform\SMETA.SentimentAnalysisPlatform.DataAccess\bin\Release\SMETA.SentimentAnalysisPlatform.DataAccess.dll
+C:\Users\Matt\Documents\GitHub\SMETA\SentimentAnalysisPlatform\SMETA.SentimentAnalysisPlatform.DataAccess\bin\Release\SMETA.SentimentAnalysisPlatform.DataAccess.pdb
+C:\Users\Matt\Documents\GitHub\SMETA\SentimentAnalysisPlatform\SMETA.SentimentAnalysisPlatform.DataAccess\bin\Release\EntityFramework.dll
+C:\Users\Matt\Documents\GitHub\SMETA\SentimentAnalysisPlatform\SMETA.SentimentAnalysisPlatform.DataAccess\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Matt\Documents\GitHub\SMETA\SentimentAnalysisPlatform\SMETA.SentimentAnalysisPlatform.DataAccess\bin\Release\EntityFramework.xml
+C:\Users\Matt\Documents\GitHub\SMETA\SentimentAnalysisPlatform\SMETA.SentimentAnalysisPlatform.DataAccess\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Matt\Documents\GitHub\SMETA\SentimentAnalysisPlatform\SMETA.SentimentAnalysisPlatform.DataAccess\obj\Release\SMETA.SentimentAnalysisPlatform.DataAccess.csprojResolveAssemblyReference.cache
+C:\Users\Matt\Documents\GitHub\SMETA\SentimentAnalysisPlatform\SMETA.SentimentAnalysisPlatform.DataAccess\obj\Release\SMETA.SentimentAnalysisPlatform.DataAccess.dll
+C:\Users\Matt\Documents\GitHub\SMETA\SentimentAnalysisPlatform\SMETA.SentimentAnalysisPlatform.DataAccess\obj\Release\SMETA.SentimentAnalysisPlatform.DataAccess.pdb

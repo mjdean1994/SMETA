@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMETA.DictionaryParser", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMETA.SentimentAnalysisPlatform.DataAccess", "SMETA.SentimentAnalysisPlatform.DataAccess\SMETA.SentimentAnalysisPlatform.DataAccess.csproj", "{45B17A47-4031-4626-8176-E4AE75EC2CEF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMETA.SentimentAnalysisPlatform.API", "SMETA.SentimentAnalysisPlatform.API\SMETA.SentimentAnalysisPlatform.API.csproj", "{11F1DA12-4859-453F-A063-53471F75E7DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{45B17A47-4031-4626-8176-E4AE75EC2CEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45B17A47-4031-4626-8176-E4AE75EC2CEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45B17A47-4031-4626-8176-E4AE75EC2CEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11F1DA12-4859-453F-A063-53471F75E7DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11F1DA12-4859-453F-A063-53471F75E7DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11F1DA12-4859-453F-A063-53471F75E7DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11F1DA12-4859-453F-A063-53471F75E7DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

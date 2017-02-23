@@ -14,10 +14,7 @@ function getGraph() {
     // Parse the date / time
     var parseDate = d3.time.format("%d-%b-%y").parse;
 
-    //Format date/time - SEE TOOLTIPS
-    var formatDate = d3.time.format("Date: %x \nTime: %H:%M%p");
-
-    // Set range first, or it won't work
+    // Set ranges for domain and range first, or it won't work
     var x = d3.time.scale().range([0, width]);
     var y = d3.scale.linear().range([height, 0]);
 
@@ -31,12 +28,6 @@ function getGraph() {
         .scale(y)
         .orient("left")
         .ticks(5);
-
-    // Add tooltip div, MAKE SIZE RESPONSIVE- NOT DONE
-    var tooltip = d3.select("#graph")
-        .append("div")
-        .attr("class", "tooltip")
-        .style("opacity", 0);
 
     // Adds the svg canvas
     var svg = d3.select("#graph")
@@ -52,16 +43,16 @@ function getGraph() {
 
 
     // Define different attribute lines
-    //use function conditionals for filter stuff later-just a note: HL
-    var sentiment_line = GetSentiment(x, y); 
-    var anger_line = GetAnger(x, y);
-    var anticipation_line = GetAnticipation(x, y);
-    var disgust_line = GetDisgust(x, y);
-    var fear_line = GetFear(x, y);
-    var joy_line = GetJoy(x, y);
-    var sadness_line = GetSadness(x, y);
-    var surprise_line = GetSurprise(x, y);
-    var trust_line = GetTrust(x, y);
+    // Use variables for comprehension
+    var sentiment_line = SentimentLine(x, y);
+    var anger_line = AngerLine(x, y);
+    var anticipation_line = AnticipationLine(x, y);
+    var disgust_line = DisgustLine(x, y);
+    var fear_line = FearLine(x, y);
+    var joy_line = JoyLine(x, y);
+    var sadness_line = SadnessLine(x, y);
+    var surprise_line = SurpriseLine(x, y);
+    var trust_line = TrustLine(x, y);
 
     //GetData will parse results and grab data with queries
     d3.json("Home/GetData",
@@ -101,35 +92,16 @@ function getGraph() {
             * Scatterplot JUST FOR SENTIMENT FOR NOW
             * So tooltip can use data values
             */
-            svg.selectAll("dot")
-                .data(data)
-                .enter()
-                .append("circle")
-                .attr("r", 3) //make it bigger when hovering?
-                .attr("cx", function(d) { return x(d.date); })
-                .attr("cy", function(d) { return y(d.sentiment); })
-                .attr("id", "dataPlots")
-                .on("mouseover", function (d) {
-
-                    /*changes all dots, needs to be individual
-                    dot.transition()
-                        .duration(1000)
-                        .attr("r", 6);*/
-
-                    tooltip.transition()
-                        .duration(250)
-                        .style("opacity", .9);
-                       
-                    tooltip.html(formatDate(d.date) + "<br/>Sentiment: " + d.sentiment)
-                        .style("left", (d3.event.pageX - 70) + "px")
-                        .style("top", (d3.event.pageY - 220) + "px");
-
-                })
-                .on("mouseout", function (d) {
-                    tooltip.transition()
-                        .duration(250)
-                        .style("opacity", 0);
-                });
+            addScatterPlot(svg, data, "sentiment", x, y);
+            addScatterPlot(svg, data, "anger", x, y);
+            addScatterPlot(svg, data, "anticipation", x, y);
+            addScatterPlot(svg, data, "disgust", x, y);
+            addScatterPlot(svg, data, "fear", x, y);
+            addScatterPlot(svg, data, "joy", x, y);
+            addScatterPlot(svg, data, "sadness", x, y);
+            addScatterPlot(svg, data, "surprise", x, y);
+            addScatterPlot(svg, data, "trust", x, y);
+         
 
             //* Add X Axis
             svg.append("g")
@@ -156,63 +128,63 @@ function getGraph() {
 * Way to simplify it somehow but after functionality
 */
 
-function GetSentiment(x, y) {
+function SentimentLine(x, y) {
     return d3.svg.line()
         .x(function(d) { return x(d.date); })
         .y(function (d) { return y(d.sentiment); })
         .interpolate("monotone");
 }
 
-function GetAnger(x, y) {
+function AngerLine(x, y) {
     return d3.svg.line()
     .x(function (d) { return x(d.date); })
     .y(function (d) { return y(d.anger); })
     .interpolate("monotone");
 }
 
-function GetAnticipation(x, y) {
+function AnticipationLine(x, y) {
     return d3.svg.line()
     .x(function (d) { return x(d.date); })
     .y(function (d) { return y(d.anticipation); })
     .interpolate("monotone");
 }
 
-function GetDisgust(x, y) {
+function DisgustLine(x, y) {
     return d3.svg.line()
     .x(function (d) { return x(d.date); })
     .y(function (d) { return y(d.disgust); })
     .interpolate("monotone");
 }
 
-function GetFear(x, y) {
+function FearLine(x, y) {
     return d3.svg.line()
     .x(function (d) { return x(d.date); })
     .y(function (d) { return y(d.fear); })
     .interpolate("monotone");
 }
 
-function GetJoy(x, y) {
+function JoyLine(x, y) {
     return d3.svg.line()
     .x(function (d) { return x(d.date); })
     .y(function (d) { return y(d.joy); })
     .interpolate("monotone");
 }
 
-function GetSadness(x, y) {
+function SadnessLine(x, y) {
     return d3.svg.line()
     .x(function (d) { return x(d.date); })
     .y(function (d) { return y(d.sadness); })
     .interpolate("monotone");
 }
 
-function GetSurprise(x, y) {
+function SurpriseLine(x, y) {
     return d3.svg.line()
     .x(function (d) { return x(d.date); })
     .y(function (d) { return y(d.surprise); })
     .interpolate("monotone");
 }
 
-function GetTrust(x, y) {
+function TrustLine(x, y) {
     return d3.svg.line()
     .x(function (d) { return x(d.date); })
     .y(function (d) { return y(d.trust); })
@@ -230,3 +202,65 @@ function drawLine(svg, drawAtt, data, attribute) {
         .attr("class", attribute)
         .attr("d", drawAtt(data));
 }
+
+
+/*****************************************************************
+ * 
+ * Scatterplot element - Function that actually gets called
+ * 
+ * PARAMETERS:
+ *   svg - the svg to append to
+ *   data - the data
+ *   attribute - for displaying in tooltips
+ *   getAtt - function to get attribute value
+ *
+ ****************************************************************/
+function addScatterPlot(svg, data, attribute, x, y) {
+
+    // Add tooltip div, MAKE SIZE RESPONSIVE- NOT DONE
+    var tooltip = d3.select("#graph")
+        .append("div")
+        .attr("class", "tooltip")
+        .style("opacity", 0);
+
+    //Format date/time - SEE TOOLTIPS
+    var formatDate = d3.time.format("Date: %x \nTime: %H:%M%p");
+
+    return svg.selectAll("dot")
+        .data(data)
+        .enter()
+        .append("circle")
+        .attr("id", "dataPlots")
+        .attr("r", 3) //make it bigger when hovering?
+        .attr("cx", function (d) { return x(d.date); })
+        .attr("cy", function (d) {
+            //if statements add to choose attribute
+             return y(d.sentiment);
+        })
+        .on("mouseover", function (d) {
+
+            tooltip.transition()
+                .duration(250)
+                .style("opacity", .9);
+
+            //this bit right here should be different for responsive sizing
+            tooltip.html(formatDate(d.date) + "<br/>" + attribute + ": " + d.sentiment)
+                .style("left", (d3.event.pageX - 70) + "px")
+                .style("top", (d3.event.pageY - 220) + "px");
+
+        })
+        .on("mouseout", function (d) {
+            tooltip.transition()
+                .duration(250)
+                .style("opacity", 0);
+        });
+}
+
+//if attribute == string, then use that function -> switch statements?
+
+/***********************************************
+ * 
+ *            SUPPORT FUNCTIONS
+ *
+ ***********************************************/
+

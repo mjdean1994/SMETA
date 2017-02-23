@@ -56,7 +56,7 @@ path.disgust {
 }
 
 path.fear {
-    stroke: yellow;
+    stroke: orange;
     stroke-width: 1;
     fill: none;
     pointer-events:all;
@@ -111,7 +111,7 @@ circle:hover {
 }
 
 #dataPlots {
-    fill: steelblue;
+    fill: inherit;
 }
 
 #dataPlots:hover {

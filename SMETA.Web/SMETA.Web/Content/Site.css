@@ -28,66 +28,14 @@ svg.graph {
 }
 
 path.sentiment {
-    stroke: black;
-    stroke-width: 1;
-    fill: none;
-    pointer-events:all;
-}
-
-path.anger {
-    stroke: red;
-    stroke-width: 1;
-    fill: none;
-    pointer-events:all;
-}
-
-path.anticipation {
-    stroke: green;
-    stroke-width: 1;
-    fill: none;
-    pointer-events:all;
-}
-
-path.disgust {
-    stroke: brown;
-    stroke-width: 1;
-    fill: none;
-    pointer-events:all;
-}
-
-path.fear {
-    stroke: orange;
-    stroke-width: 1;
-    fill: none;
-    pointer-events:all;
-}
-
-path.joy {
-    stroke: pink;
-    stroke-width: 1;
-    fill: none;
-    pointer-events:all;
-}
- 
-path.sadness {
     stroke: steelblue;
     stroke-width: 1;
     fill: none;
     pointer-events:all;
 }
 
-path.surprise {
-    stroke: turquoise;
-    stroke-width: 1;
-    fill: none;
-    pointer-events:all;
-}
-
-path.trust {
-    stroke: purple;
-    stroke-width: 1;
-    fill: none;
-    pointer-events:all;
+path.sentiment:hover {
+    stroke-width: 2px;    
 }
 
 line {
@@ -101,41 +49,34 @@ text {
     stroke: grey;
 }
 
-circle:hover {
-    border-radius: 25px;        
-}
-
 .bold {
     font-weight: bold;
     font-variant: small-caps;
 }
 
 #dataPlots {
-    fill: inherit;
+    fill: steelblue;
 }
 
 #dataPlots:hover {
-    width: 10px;
-    height: 10px;
     fill: black;
-    stroke-width: 8px;
 }
 
 path.domain {
     stroke: grey;
-    stroke-width: 2;
+    stroke-width: 1;
+    font-weight: 100;
     fill: none;
 }
 
 div.tooltip {	
     position: absolute;			
     text-align: center;			
-    width: 150px;					
-    height: 65px;					
+    width: 10%;						
     padding: 5px;				
-    font: 12px sans-serif;		
     background-color: lightblue;	
     border-radius: 4px;			
     pointer-events: none;
     color: black;	
 }
+

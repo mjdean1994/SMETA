@@ -1,5 +1,6 @@
 ﻿using System;
 using Tweetinvi.Models;
+using MongoDB.Bson;
 
 namespace SMETA.DataAccess.Models
 {
@@ -16,31 +17,33 @@ namespace SMETA.DataAccess.Models
 
         public void AddSentimentValues(SentimentScore sentimentScore)
         {
-            Sentiment = ((sentimentScore.positivity - sentimentScore.negativitiy) + 1) / 2;
-            Anger = sentimentScore.anger;
-            Anticipation = sentimentScore.anticipation;
-            Disgust = sentimentScore.disgust;
-            Fear = sentimentScore.fear;
-            Joy = sentimentScore.joy;
-            Sadness = sentimentScore.sadness;
-            Surprise = sentimentScore.surprise;
-            Trust = sentimentScore.trust;
-            Updated = DateTime.Now;
+            Positivity = sentimentScore.probability.pos;
+            Neutrality = sentimentScore.probability.neutral;
+            Negativity = sentimentScore.probability.neg;
+
+            if (sentimentScore.label == "pos")
+            {
+                Sentiment = Positivity;
+            }
+            else if (sentimentScore.label == "neg")
+            {
+                Sentiment = 1 - Negativity;
+            }
+            else
+            {
+                Sentiment = 0.5f;
+            }
         }
 
+        public BsonObjectId  _id { get; set; }
         public string DisplayName { get; set; }
         public string Username { get; set; }
         public string Text { get; set; }
         public DateTime PostedDate { get; set; }
         public float Sentiment { get; set; }
-        public float Anger { get; set; }
-        public float Anticipation { get; set; }
-        public float Disgust { get; set; }
-        public float Fear { get; set; }
-        public float Joy { get; set; }
-        public float Sadness { get; set; }
-        public float Surprise { get; set; }
-        public float Trust { get; set; }
+        public float Positivity { get; set; }
+        public float Neutrality { get; set; }
+        public float Negativity { get; set; }
         public DateTime Updated { get; set; }
     }
 }

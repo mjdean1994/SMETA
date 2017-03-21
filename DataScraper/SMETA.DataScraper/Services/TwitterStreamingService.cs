@@ -9,6 +9,7 @@ using Tweetinvi.Models;
 using Tweetinvi.Streaming;
 using SMETA.DataAccess.Repositories;
 using SMETA.DataAccess.Models;
+using System.Diagnostics;
 
 namespace SMETA.DataScraper.Services
 {
@@ -54,15 +55,19 @@ namespace SMETA.DataScraper.Services
         {
             if(_currentMarker <= SAVE_THRESHOLD)
             {
+                Debug.Write("Saving tweet to buffer");
                 TweetHub hub = new TweetHub();
                 hub.PostTweet(e.Tweet.CreatedBy.Name, e.Tweet.CreatedBy.ScreenName, e.Tweet.Text);
                 _tweetBuffer.Add(AnalyzeTweet(e.Tweet));
 
-                if (_tweetBuffer.Count > BUFFER_MAX)
+                if (_tweetBuffer.Count >= BUFFER_MAX)
                 {
+                    Debug.Write("Inserting buffer into PostDb. Stopping stream...");
                     _stream.StopStream();
                     _postRepository.InsertPosts(_tweetBuffer);
-                    _streamThread.Start();
+                    _tweetBuffer.Clear();
+                    _stream.StartStream();
+                    Debug.Write("Buffer inserted! Resuming stream!");
                 }
             }
 
@@ -77,7 +82,6 @@ namespace SMETA.DataScraper.Services
         private static Post AnalyzeTweet(ITweet tweet)
         {
             Post post = new Post(tweet);
-
             post.AddSentimentValues(SentimentAnalysisService.GetSentiment(post.Text));
 
             return post;

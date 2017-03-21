@@ -315,3 +315,4 @@ C:\Users\Matt\Documents\GitHub\SMETA\DataScraper\SMETA.DataScraper\bin\Microsoft
 C:\Users\Matt\Documents\GitHub\SMETA\DataScraper\SMETA.DataScraper\bin\MongoDB.Driver.xml
 C:\Users\Matt\Documents\GitHub\SMETA\DataScraper\SMETA.DataScraper\bin\MongoDB.Driver.Core.xml
 C:\Users\Matt\Documents\GitHub\SMETA\DataScraper\SMETA.DataScraper\bin\MongoDB.Bson.xml
+C:\Users\Matt\Documents\GitHub\SMETA\DataScraper\SMETA.DataScraper\bin\unirest-net.dll

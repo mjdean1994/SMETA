@@ -24,16 +24,11 @@ namespace SMETA.DataAccess.Repositories
             _client = new MongoClient(settings);
             _database = _client.GetDatabase(Configuration.POST_DB_NAME);
         }
-
-        /// <summary>
-        /// Returns all tweets submitted by the given username
-        /// </summary>
-        /// <param name="username">A twitter handle to search the database for</param>
-        /// <returns></returns>
-        public List<Post> GetPostsByUsername(string username)
+        
+        public List<Post> GetAllPosts()
         {
             IMongoCollection<Post> collection = _database.GetCollection<Post>("posts");
-            return collection.Find(x => x.Username == username).ToList();
+            return collection.Find(x => true).ToList();
         }
 
         public void InsertPosts(List<Post> posts)

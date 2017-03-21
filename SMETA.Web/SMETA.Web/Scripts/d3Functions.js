@@ -8,7 +8,7 @@
         height = 385 - margin.top - margin.bottom;
 
     // Parse the date / time
-    var parseDate = d3.time.format("%d-%b-%y").parse;
+    var parseDate = d3.time.format("%d-%b-%Y %H:%M").parse;
 
     //Format date/time - SEE TOOLTIPS
     var formatDate = d3.time.format("Date: %x \nTime: %H:%M%p");
@@ -30,8 +30,8 @@
 
     // Define the line
     var sentiment_line = d3.svg.line()
-        .x(function(d) { return x(d.date); })
-        .y(function(d) { return y(d.positive); });
+        .x(function (d) { return x(d.date); })
+        .y(function(d) { return y(d.sentiment); });
 
     // Add tooltip div, MAKE SIZE RESPONSIVE
     var tooltip = d3.select("#graph")
@@ -52,17 +52,15 @@
             "translate(" + margin.left + "," + margin.top + ")");
 
     //check mongodb query results, != JSON format
-    d3.json("../SampleData/data.json",
+    d3.json("../home/getdata",
         function (error, data) {
-            console.log(data);
-            data.forEach(function(d) {
+            data.forEach(function (d) {
                 d.date = parseDate(d.date);
-                d.positive = +d.positive;
             });
 
             // Scale the range of the data
-            x.domain(d3.extent(data, function(d) { return d.date; }));
-            y.domain([0, d3.max(data, function(d) { return d.positive; })]);
+            x.domain(d3.extent(data, function (d) { return d.date; }));
+            y.domain([0, d3.max(data, function(d) { return d.sentiment; })]);
 
             // Add data line
             svg.append("path")
@@ -77,9 +75,9 @@
                 .data(data)
                 .enter()
                 .append("circle")
-                    .attr("r", 3) //make it bigger when hovering?
-                    .attr("cx", function(d) { return x(d.date); })
-                    .attr("cy", function(d) { return y(d.positive); })
+                    .attr("r", 1) //make it bigger when hovering?
+                    .attr("cx", function (d) { return x(d.date); })
+                    .attr("cy", function(d) { return y(d.sentiment); })
                     .attr("id", "dataPlots")
                     // tooltip bit
                     .on("mouseover", function (d) {
@@ -87,7 +85,7 @@
                             .duration(200)
                             .style("opacity", .9);
                        
-                        tooltip.html(formatDate(d.date) + "<br/>Positivity: " + d.positive)
+                        tooltip.html(formatDate(d.date) + "<br/>Positivity: " + d.sentiment)
                             .style("left", (d3.event.pageX - 70) + "px")
                             .style("top", (d3.event.pageY - 220) + "px");
                         //make radius of circle bigger.

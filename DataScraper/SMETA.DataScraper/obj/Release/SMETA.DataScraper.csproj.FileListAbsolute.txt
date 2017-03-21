@@ -120,3 +120,4 @@ C:\Users\Matt\Documents\GitHub\SMETA\DataScraper\SMETA.DataScraper\obj\Release\S
 C:\Users\Matt\Documents\GitHub\SMETA\DataScraper\SMETA.DataScraper\obj\Release\SMETA.DataScraper.csprojResolveAssemblyReference.cache
 C:\Users\Matt\Documents\GitHub\SMETA\DataScraper\SMETA.DataScraper\obj\Release\SMETA.DataScraper.dll
 C:\Users\Matt\Documents\GitHub\SMETA\DataScraper\SMETA.DataScraper\obj\Release\SMETA.DataScraper.pdb
+C:\Users\Matt\Documents\GitHub\SMETA\DataScraper\SMETA.DataScraper\bin\unirest-net.dll

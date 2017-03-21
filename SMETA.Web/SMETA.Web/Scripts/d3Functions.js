@@ -28,11 +28,19 @@ function getGraph() {
         .ticks(5);
 
     // Define the line
-    var sentiment_line = d3.svg.line()
+    var positive_line = d3.svg.line()
         .x(function (d) { return x(d.date); })
-        .y(function(d) { return y(d.positivity); });
+        .y(function (d) { return y(d.positivity); });
 
-    // Add tooltip div, MAKE SIZE RESPONSIVE
+    var negative_line = d3.svg.line()
+        .x(function (d) { return x(d.date); })
+        .y(function (d) { return y(d.negativity); });
+
+    var neutral_line = d3.svg.line()
+        .x(function (d) { return x(d.date); })
+        .y(function (d) { return y(d.neutrality); });
+
+    // Add tooltip div
     var tooltip = d3.select("#graph")
         .append("div")
         .attr("class", "tooltip")
@@ -62,16 +70,20 @@ function getGraph() {
 
 
             //function: COMPARE MAX ATTR VALUES
-            //set default to max sentiment value of sample set -> 0.99
+            //MAKE FUNCTION FOR aLL 3 LINES COMPARE VALUE, GET GREATEST
             y.domain([0, d3.max(data, function(d) { return d.positivity; })]);
 
             // Add data line for each attribute
-            drawLine(svg, SentimentLine(x, y), data, "sentiment");
+            drawLine(svg, NeutralLine(x, y), data, "neutrality");
+            drawLine(svg, PositiveLine(x, y), data, "positivity");
+            drawLine(svg, NegativeLine(x, y), data, "negativity");
 
             /* 
             * So tooltip can use data values
             */
-            addScatterPlot(svg, data, "Sentiment", x, y);
+            addScatterPlot(svg, data, "Neutrality", x, y);
+            addScatterPlot(svg, data, "Positivity", x, y);
+            addScatterPlot(svg, data, "Negativity", x, y);
          
 
             //* Add X Axis
@@ -97,14 +109,23 @@ function getGraph() {
  **********************************************************/
 
 /*
-* GETATTRIBUTE FUNCTION RETURN FOR SIMPLICITY
-* Way to simplify it somehow but after functionality
+* simplify lines
 */
 
-function SentimentLine(x, y) {
+function PositiveLine(x, y) {
     return d3.svg.line()
         .x(function (d) { return x(d.date); })
         .y(function (d) { return y(d.positivity); });
+}
+function NegativeLine(x, y) {
+    return d3.svg.line()
+        .x(function (d) { return x(d.date); })
+        .y(function (d) { return y(d.negativity); });
+}
+function NeutralLine(x, y) {
+    return d3.svg.line()
+        .x(function (d) { return x(d.date); })
+        .y(function (d) { return y(d.neutrality); });
 }
 
 
@@ -145,7 +166,12 @@ function addScatterPlot(svg, data, attribute, x, y) {
         .attr("cx", function (d) { return x(d.date); })
         .attr("cy", function (d) {
             //if statements add to choose attribute
-             return y(d.positivity);
+            if (attribute == "Positivity")
+                return y(d.positivity);
+            else if (attribute == "Neutrality")
+                return y(d.neutrality);
+            else
+                return y(d.negativity);
         })
         .on("mouseover", function (d) {
 
@@ -153,7 +179,6 @@ function addScatterPlot(svg, data, attribute, x, y) {
                 .duration(250)
                 .style("opacity", .9);
 
-            //this bit right here should be different for responsive sizing
             tooltip.html(formatDate(d.date) + "<br/>" + attribute + ": " + d.positivity)
                 .style("left", (d3.event.pageX - 70) + "px")
                 .style("top", (d3.event.pageY - 220) + "px");

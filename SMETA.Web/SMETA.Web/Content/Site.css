@@ -28,7 +28,7 @@ svg.graph {
 }
 
 path {
-    stroke: steelblue;
+    stroke: #3c9b29;
     stroke-width: 1;
     fill: none;
     pointer-events:all;

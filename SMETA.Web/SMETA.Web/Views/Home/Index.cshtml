@@ -24,16 +24,17 @@
 
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect"><i class="icon-magnifier"></i> <span> Search Words/Phrases </span> <span class="menu-arrow"></span></a>
+                    <ul class="list-unstyled">
+                        <li style="padding: 20px; width: 200px;">
+                            <input type="text" class="form-control" placeholder="Word/phrase Search">
+                            <button class="btn-default">Submit</button>
+                        </li>
+                    </ul>
                 </li>
 
-                <li class="has_sub">
-                    <a href="javascript:void(0);" class="waves-effect"><i class="icon-settings"></i> <span> Settings </span> <span class="menu-arrow"></span></a>
-                </li>
-
-
-            </ul>
-            <div class="clearfix"></div>
-        </div>
+                    </ul>
+                    <div class="clearfix"></div>
+</div>
         <div class="clearfix"></div>
     </div>
 </div>
@@ -50,19 +51,24 @@
                         </div>
                         <div class="text-right">
                             <h3 class="text-dark"><b class="counter">+0.5% Sentiment</b></h3>
+                            <p>
+                                <button id="graphView" class="btn btn-default" onclick="switchGraphData()">Split</button>
+                            </p>
                         </div>
                         <div class="clearfix"></div>
                     </div>
                 </div>
 
-                <!--Moblie Cards-->
+                <!--Mobile Cards-->
                 <div class="col-md-12 visible-xs">
                     <div class="widget-bg-color-icon card-box">
                         <div class="bg-icon bg-icon-success pull-left">
                             <i class="glyphicon glyphicon-arrow-up text-success"></i>
                         </div>
                         <div class="text-right">
-                            <h3 class="text-dark"><b class="counter">+0.5%</b></h3>
+                            <!--change stock ticker to dynamic-->
+                            <h3 class="text-dark"><b class="counter">+0.5%</b>
+                            </h3>
                             <h4 class="text-muted">Sentiment</h4>
                         </div>
                         <div class="clearfix"></div>
@@ -178,8 +184,7 @@
                         24 hour period
                         all tweets
                         all users
-
-                            -->
+                        -->
                     </div>
                 </div>
             </div>

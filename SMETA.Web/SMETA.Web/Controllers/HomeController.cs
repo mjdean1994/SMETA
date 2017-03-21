@@ -51,9 +51,17 @@ namespace SMETA.Web.Controllers
             PostRepository postRepository = new PostRepository();
             List<Post> posts = postRepository.GetAllPosts();
 
-            var vm = posts.GroupBy(x => x.PostedDate.Minute).Select(y => new DataViewModel
+            var vm = posts.GroupBy(x => 
             {
-                date = y.Max(z => z.PostedDate.ToString("dd-MMM-yy HH:mm")),
+                var stamp = x.PostedDate;
+                //stamp = stamp.AddMinutes(-stamp.Minute);
+                stamp = stamp.AddSeconds(-stamp.Second);
+                stamp = stamp.AddMilliseconds(-stamp.Millisecond);
+                return stamp;
+            })
+            .Select(y => new DataViewModel
+            {
+                date = y.Key.ToString("dd-MMM-yy HH:mm"),
                 positivity = y.Average(z => z.Positivity).ToString(),
                 neutrality = y.Average(z => z.Neutrality).ToString(),
                 negativity = y.Average(z => z.Negativity).ToString(),

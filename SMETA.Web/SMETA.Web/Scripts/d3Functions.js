@@ -1,6 +1,8 @@
-﻿function getGraph() {
-    // dont hardcode data because fuck hardcoded data
-    /* use v3 instead of v4, more documentation on it */
+﻿/*
+ * CREATES AND POPULATES GRAPH 
+ */
+function getGraph() {
+    //CAPSTONE DOC DONT FORGET TO MENTION USE OF V3 INSTEAD OF V4 BC BETTER DOCUMENTATION
 
     // Set the dimensions of the canvas / graph
     var margin = { top: 20, right: 0, bottom: 30, left: 50 },
@@ -10,10 +12,7 @@
     // Parse the date / time
     var parseDate = d3.time.format("%d-%b-%Y %H:%M").parse;
 
-    //Format date/time - SEE TOOLTIPS
-    var formatDate = d3.time.format("Date: %x \nTime: %H:%M%p");
-
-    // Set range first, or it won't work
+    // Set ranges for domain and range first, or it won't work
     var x = d3.time.scale().range([0, width]);
     var y = d3.scale.linear().range([height, 0]);
 
@@ -31,7 +30,7 @@
     // Define the line
     var sentiment_line = d3.svg.line()
         .x(function (d) { return x(d.date); })
-        .y(function(d) { return y(d.sentiment); });
+        .y(function(d) { return y(d.positivity); });
 
     // Add tooltip div, MAKE SIZE RESPONSIVE
     var tooltip = d3.select("#graph")
@@ -60,51 +59,122 @@
 
             // Scale the range of the data
             x.domain(d3.extent(data, function (d) { return d.date; }));
-            y.domain([0, d3.max(data, function(d) { return d.sentiment; })]);
 
-            // Add data line
-            svg.append("path")
-                .attr("class", "line")
-                .attr("d", sentiment_line(data));
+
+            //function: COMPARE MAX ATTR VALUES
+            //set default to max sentiment value of sample set -> 0.99
+            y.domain([0, d3.max(data, function(d) { return d.positivity; })]);
+
+            // Add data line for each attribute
+            drawLine(svg, SentimentLine(x, y), data, "sentiment");
 
             /* 
-            * Scatterplot 
             * So tooltip can use data values
             */
-            svg.selectAll("dot")
-                .data(data)
-                .enter()
-                .append("circle")
-                    .attr("r", 1) //make it bigger when hovering?
-                    .attr("cx", function (d) { return x(d.date); })
-                    .attr("cy", function(d) { return y(d.sentiment); })
-                    .attr("id", "dataPlots")
-                    // tooltip bit
-                    .on("mouseover", function (d) {
-                        tooltip.transition()
-                            .duration(200)
-                            .style("opacity", .9);
-                       
-                        tooltip.html(formatDate(d.date) + "<br/>Positivity: " + d.sentiment)
-                            .style("left", (d3.event.pageX - 70) + "px")
-                            .style("top", (d3.event.pageY - 220) + "px");
-                        //make radius of circle bigger.
-                    })
-                    .on("mouseout", function (d) {
-                        tooltip.transition()
-                            .duration(250)
-                            .style("opacity", 0);
-                    });
+            addScatterPlot(svg, data, "Sentiment", x, y);
+         
 
-            // Add the X Axis
+            //* Add X Axis
             svg.append("g")
                 .attr("transform", "translate(0," + height + ")")
                 .call(xAxis);
 
-            // Add the Y Axis
+            //* Add Y Axis
             svg.append("g")
                 .call(yAxis);
+
+            // Legends are above on dashboard, change colors
 
         });
 }
 
+
+
+/***********************************************************
+ *
+ *            ------ SUPPORT FUNCTIONS -----
+ *
+ **********************************************************/
+
+/*
+* GETATTRIBUTE FUNCTION RETURN FOR SIMPLICITY
+* Way to simplify it somehow but after functionality
+*/
+
+function SentimentLine(x, y) {
+    return d3.svg.line()
+        .x(function (d) { return x(d.date); })
+        .y(function (d) { return y(d.positivity); });
+}
+
+
+/*
+ * Function to actually draw graphs
+ * need svg
+ */
+function drawLine(svg, drawAtt, data, attribute) {
+    svg.append("path")
+        .attr("class", attribute)
+        .attr("d", drawAtt(data));
+}
+
+/*
+ * PARAMETERS:
+ *   svg - the svg to append to
+ *   data - the data
+ *   attribute - for displaying in tooltips
+ *   getAtt - function to get attribute value
+ */
+function addScatterPlot(svg, data, attribute, x, y) {
+
+    // Add tooltip div, MAKE SIZE RESPONSIVE- NOT DONE
+    var tooltip = d3.select("#graph")
+        .append("div")
+        .attr("class", "tooltip")
+        .style("opacity", 0);
+
+    //Format date/time - SEE TOOLTIPS
+    var formatDate = d3.time.format("Date: %x <br/> Time: %H:%M%p");
+
+    return svg.selectAll("dot")
+        .data(data)
+        .enter()
+        .append("circle")
+        .attr("id", "dataPlots")
+        .attr("r", 1) //make it bigger when hovering?
+        .attr("cx", function (d) { return x(d.date); })
+        .attr("cy", function (d) {
+            //if statements add to choose attribute
+             return y(d.positivity);
+        })
+        .on("mouseover", function (d) {
+
+            tooltip.transition()
+                .duration(250)
+                .style("opacity", .9);
+
+            //this bit right here should be different for responsive sizing
+            tooltip.html(formatDate(d.date) + "<br/>" + attribute + ": " + d.positivity)
+                .style("left", (d3.event.pageX - 70) + "px")
+                .style("top", (d3.event.pageY - 220) + "px");
+
+        })
+        .on("mouseout", function (d) {
+            tooltip.transition()
+                .duration(300)
+                .style("opacity", 0);
+        });
+}
+
+
+function switchGraphData() {
+    var elem = document.getElementById("graphView");
+
+    if (elem.textContent == "Compound") {
+        elem.textContent = "Split";
+        //other things
+    } else {
+        elem.textContent = "Compound";
+        //OTHER FUNCTION FOR RELOADING GRAPH
+    }
+}

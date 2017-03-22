@@ -71,12 +71,12 @@ function getGraph() {
 
             //function: COMPARE MAX ATTR VALUES
             //MAKE FUNCTION FOR aLL 3 LINES COMPARE VALUE, GET GREATEST
-            y.domain([0, d3.max(data, function(d) { return d.positivity; })]);
+            y.domain([getRangeMin(data), getRangeMax(data)]);
 
             // Add data line for each attribute
-            drawLine(svg, NeutralLine(x, y), data, "neutrality");
-            drawLine(svg, PositiveLine(x, y), data, "positivity");
-            drawLine(svg, NegativeLine(x, y), data, "negativity");
+            drawLine(svg, neutral_line, data, "neutrality");
+            drawLine(svg, positive_line, data, "positivity");
+            drawLine(svg, negative_line, data, "negativity");
 
             /* 
             * So tooltip can use data values
@@ -109,29 +109,46 @@ function getGraph() {
  **********************************************************/
 
 /*
-* simplify lines
-*/
+ * Get the range for the graph
+ */
+function getRangeMax(data) {
+    var maxPos = d3.max(data, function(d) { return d.positivity; });
+    var maxNeu = d3.max(data, function(d) { return d.neutrality; });
+    var maxNeg = d3.max(data, function(d) { return d.negativity; });
 
-function PositiveLine(x, y) {
-    return d3.svg.line()
-        .x(function (d) { return x(d.date); })
-        .y(function (d) { return y(d.positivity); });
+    if (maxPos >= maxNeu && maxPos >= maxNeg)
+        return maxPos;
+    else if (maxNeu >= maxPos && maxNeu >= maxNeg)
+        return maxNeu;
+    else if (maxNeg >= maxPos && maxNeg > maxNeu)
+        return maxNeg;
+    else {
+        console.log("Unexpected output for getRangeMin");
+    }
 }
-function NegativeLine(x, y) {
-    return d3.svg.line()
-        .x(function (d) { return x(d.date); })
-        .y(function (d) { return y(d.negativity); });
-}
-function NeutralLine(x, y) {
-    return d3.svg.line()
-        .x(function (d) { return x(d.date); })
-        .y(function (d) { return y(d.neutrality); });
+
+/*
+ * Get the range for the graph
+ */
+function getRangeMin(data) {
+    var minPos = d3.min(data, function (d) { return d.positivity; });
+    var minNeu = d3.min(data, function (d) { return d.neutrality; });
+    var minNeg = d3.min(data, function (d) { return d.negativity; });
+
+    if (minPos <= minNeu && minPos <= minNeg)
+        return minPos;
+    else if (minNeu <= minPos && minNeu <= minNeg)
+        return minNeu;
+    else if (minNeg <= minPos && minNeg < minNeu)
+        return minNeg;
+    else {
+        console.log("Unexpected output for getRangeMin");
+    }
 }
 
 
 /*
  * Function to actually draw graphs
- * need svg
  */
 function drawLine(svg, drawAtt, data, attribute) {
     svg.append("path")
@@ -143,7 +160,7 @@ function drawLine(svg, drawAtt, data, attribute) {
  * PARAMETERS:
  *   svg - the svg to append to
  *   data - the data
- *   attribute - for displaying in tooltips
+ *   attribute - for displaying in tooltips and determine attribute
  *   getAtt - function to get attribute value
  */
 function addScatterPlot(svg, data, attribute, x, y) {
@@ -165,7 +182,6 @@ function addScatterPlot(svg, data, attribute, x, y) {
         .attr("r", 1) //make it bigger when hovering?
         .attr("cx", function (d) { return x(d.date); })
         .attr("cy", function (d) {
-            //if statements add to choose attribute
             if (attribute == "Positivity")
                 return y(d.positivity);
             else if (attribute == "Neutrality")

@@ -36,5 +36,11 @@ namespace SMETA.DataAccess.Repositories
             IMongoCollection<Post> collection = _database.GetCollection<Post>("posts");
             collection.InsertMany(posts);
         }
+
+        public Post GetSinglePost()
+        {
+            IMongoCollection<Post> collection = _database.GetCollection<Post>("posts");
+            return collection.Find(x => true).FirstOrDefault();
+        }
     }
 }

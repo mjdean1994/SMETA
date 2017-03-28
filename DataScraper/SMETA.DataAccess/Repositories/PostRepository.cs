@@ -42,5 +42,13 @@ namespace SMETA.DataAccess.Repositories
             IMongoCollection<Post> collection = _database.GetCollection<Post>("posts");
             return collection.Find(x => true).FirstOrDefault();
         }
+
+        //function to query based on search filter, change to List<Post>
+        //Figure out where the queries are supposed to be
+        public void GetSearchPost(String searchTerms)
+        {
+            IMongoCollection<Post> collection = _database.GetCollection<Post>("posts");
+            //return collection.Find(searchTerms).FirstOrDefault();
+        }
     }
 }

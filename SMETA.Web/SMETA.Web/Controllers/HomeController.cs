@@ -54,7 +54,7 @@ namespace SMETA.Web.Controllers
             var vm = posts.GroupBy(x => 
             {
                 var stamp = x.PostedDate;
-                //stamp = stamp.AddMinutes(-stamp.Minute);
+                stamp = stamp.AddMinutes(-stamp.Minute);
                 stamp = stamp.AddSeconds(-stamp.Second);
                 stamp = stamp.AddMilliseconds(-stamp.Millisecond);
                 return stamp;

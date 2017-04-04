@@ -4,7 +4,24 @@
 function getGraph() {
     //CAPSTONE DOC DONT FORGET TO MENTION USE OF V3 INSTEAD OF V4 BC BETTER DOCUMENTATION
 
-    // PASS IN PARAMETERS FROM FILTERS
+    // Remove existing graph, if applicable
+    $("#graphBase").remove();
+    $("#graphTooltip").remove();
+    $("#loading").removeClass("hidden");
+
+    var startDate = $("#FilterAttr_StartDate").val();
+    var endDate = $("#FilterAttr_EndDate").val();
+    var query = $("#FilterAttr_Query").val();
+
+    if (startDate == "" || startDate == null)
+    {
+        startDate = "2000-1-1";
+    }
+
+    if (endDate == "" || endDate == null)
+    {
+        endDate = "2050-12-31";
+    }
 
     // Set the dimensions of the canvas / graph
     var margin = { top: 20, right: 0, bottom: 30, left: 50 },
@@ -46,6 +63,7 @@ function getGraph() {
     var tooltip = d3.select("#graph")
         .append("div")
         .attr("class", "tooltip")
+        .attr("id","graphTooltip")
         .style("opacity", 0);
 
     // Adds the svg canvas
@@ -56,33 +74,38 @@ function getGraph() {
         .attr("height", "100%")
         .attr("preserveAspectRatio", "xMinYMin meet")
         .attr("viewBox", "0 0 900 450")
+        .attr("id","graphBase")
         .classed("svg-content-responsive", true)
         .append("g")
         .attr("transform",
             "translate(" + margin.left + "," + margin.top + ")");
 
-    d3.json("../home/getdata",
+    d3.xhr("../home/getdata")
+    .header("Content-Type", "application/json")
+    .post(
+        JSON.stringify({ startDate: startDate, endDate: endDate, query: query }),
         function (error, data) {
-            data.forEach(function (d) {
-                d.date = parseDate(d.date);
-            });
+            var jsonData = JSON.parse(data.response);
 
-
+            $.each(jsonData, function (index, value) {
+                value.date = parseDate(value.date);
+            })
+            
             // Scale the domain and range of the data
-            x.domain(d3.extent(data, function (d) { return d.date; }));
-            y.domain([getRangeMin(data), getRangeMax(data)]);
+            x.domain(d3.extent(jsonData, function (d) { return d.date; }));
+            y.domain([getRangeMin(jsonData), getRangeMax(jsonData)]);
 
             // Add data line for each attribute
-            drawLine(svg, neutral_line, data, "neutrality");
-            drawLine(svg, positive_line, data, "positivity");
-            drawLine(svg, negative_line, data, "negativity");
+            drawLine(svg, neutral_line, jsonData, "neutrality");
+            drawLine(svg, positive_line, jsonData, "positivity");
+            drawLine(svg, negative_line, jsonData, "negativity");
 
             /* 
             * So tooltip can use data values
             */
-            addScatterPlot(svg, data, "Neutrality", x, y);
-            addScatterPlot(svg, data, "Positivity", x, y);
-            addScatterPlot(svg, data, "Negativity", x, y);
+            addScatterPlot(svg, jsonData, "Neutrality", x, y);
+            addScatterPlot(svg, jsonData, "Positivity", x, y);
+            addScatterPlot(svg, jsonData, "Negativity", x, y);
          
 
             //* Add X Axis
@@ -97,6 +120,8 @@ function getGraph() {
             // Legends are above on dashboard, change colors
 
         });
+
+    $("#loading").addClass("hidden");
 }
 
 

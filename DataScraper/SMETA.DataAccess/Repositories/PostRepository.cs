@@ -52,7 +52,9 @@ namespace SMETA.DataAccess.Repositories
             var queryable = _database.GetCollection<Post>("posts").AsQueryable<Post>();
             var result =
                 from x in queryable
-                where Regex.IsMatch(x.Text, filter.Query, RegexOptions.IgnoreCase) && x.PostedDate >= filter.StartDate && x.PostedDate <= filter.EndDate
+                where Regex.IsMatch(x.Text, filter.Query, RegexOptions.IgnoreCase) 
+                    && x.PostedDate >= filter.StartDate 
+                    && x.PostedDate <= filter.EndDate
                 select x;
 
             return result.ToList();

@@ -18,6 +18,10 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/uboldjs")
+    @RenderSection("Scripts", false)
+
     <script src="http://d3js.org/d3.v3.js"></script>
     <script src="../../Scripts/d3Functions.js"></script>
     <script src="../../Scripts/site.js"></script>
@@ -72,8 +76,6 @@
             var resizefunc = [];
     </script>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/uboldjs")
-    @RenderSection("Scripts", false)
+    
 </body>
 </html>

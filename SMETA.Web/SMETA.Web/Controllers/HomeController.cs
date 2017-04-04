@@ -45,14 +45,14 @@ namespace SMETA.Web.Controllers
             return Json(new { success = true });
         }
         
-        [HttpGet]
-        public JsonResult GetData(/*DateTime startDate, DateTime endDate, string query*/)
+        [HttpPost]
+        public JsonResult GetData(DateTime startDate, DateTime endDate, String query)
         {
             PostRepository postRepository = new PostRepository();
             PostFilter filter = new PostFilter();
-            //filter.StartDate = startDate;
-            //filter.EndDate = endDate;
-            //filter.Query = query;
+            filter.StartDate = startDate;
+            filter.EndDate = endDate;
+            filter.Query = query;
             
             List<Post> posts = postRepository.GetPosts(filter);
 

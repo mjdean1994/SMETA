@@ -113,7 +113,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="widget-bg-color-icon card-box" id="graph">
-                        <h3>Tweet Positivity Over Time</h3>
+                        <h3>Tweet Positivity Over Time <span id="loading" class="hidden"><i class="fa fa-spin fa-spinner"></i></span></h3>
                         <script>getGraph();</script>
                         <!--put in legends-->
                         <!--load DEFAULT graph, changing fiter options-->
@@ -144,15 +144,11 @@
             })
 
             $("#Apply_DateTime").click(function () {
-                $("#Apply_DateTime").addClass("disabled");
-                //Update Function
-                $("#Apply_DateTime").removeClass("disabled");
+                getGraph();
             })
 
             $("#Apply_Query").click(function () {
-                $("#Apply_Query").addClass("disabled");
-                //Update Function
-                $("#Apply_Query").removeClass("disabled");
+                getGraph();
             })
         });
     </script>

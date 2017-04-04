@@ -5,6 +5,9 @@ using SMETA.DataAccess.Models;
 using Tweetinvi.Models;
 using System;
 using MongoDB.Bson;
+using MongoDB.Driver.Linq; //for querying
+
+using SMETA.DataAccess.Models;
 
 namespace SMETA.DataAccess.Repositories
 {
@@ -43,12 +46,28 @@ namespace SMETA.DataAccess.Repositories
             return collection.Find(x => true).FirstOrDefault();
         }
 
-        //function to query based on search filter, change to List<Post>
-        //Figure out where the queries are supposed to be
-        public void GetSearchPost(String searchTerms)
+        //function to query based on search filter
+        public List<Post> GetSearchPost(String searchTerms) //throws some exception if query fails
         {
             IMongoCollection<Post> collection = _database.GetCollection<Post>("posts");
-            //return collection.Find(searchTerms).FirstOrDefault();
+            var result =
+                from x in collection.AsQueryable<Post>()
+                where x.Text.Contains(searchTerms)
+                select x;
+                   
+            return result.ToList();
         }
+
+        ////function to 
+        //public List<Post> GetDatePost(Date dateFilter)
+        //{
+        //    IMongoCollection<Post> collection = _database.GetCollection<Post>("posts");
+        //    var result =
+        //        from x in collection.AsQueryable<Post>()
+        //        where x.PostedDate > dateFilter.Start && x.PostedDate <= dateFilter.End
+        //        select x;
+
+        //    return result.ToList();
+        //}
     }
 }

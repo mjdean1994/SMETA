@@ -58,5 +58,12 @@ namespace SMETA.Web.Tests.Controllers
             //find query result failure return value
 
         }
+
+        [TestMethod]
+        public void DateFilter()
+        {
+            //validation check on submit
+            //same as search filter, figure out where queries are
+        }
     }
 }

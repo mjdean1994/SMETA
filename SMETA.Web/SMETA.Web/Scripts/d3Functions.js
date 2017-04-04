@@ -4,6 +4,8 @@
 function getGraph() {
     //CAPSTONE DOC DONT FORGET TO MENTION USE OF V3 INSTEAD OF V4 BC BETTER DOCUMENTATION
 
+    // PASS IN PARAMETERS FROM FILTERS
+
     // Set the dimensions of the canvas / graph
     var margin = { top: 20, right: 0, bottom: 30, left: 50 },
         width = 800 ,
@@ -47,6 +49,7 @@ function getGraph() {
         .style("opacity", 0);
 
     // Adds the svg canvas
+    //REPLACE INSTEAD OF APPEND
     var svg = d3.select("#graph")
         .append("svg")
         .attr("width", "95%")
@@ -58,19 +61,15 @@ function getGraph() {
         .attr("transform",
             "translate(" + margin.left + "," + margin.top + ")");
 
-    //check mongodb query results, != JSON format
     d3.json("../home/getdata",
         function (error, data) {
             data.forEach(function (d) {
                 d.date = parseDate(d.date);
             });
 
-            // Scale the range of the data
+
+            // Scale the domain and range of the data
             x.domain(d3.extent(data, function (d) { return d.date; }));
-
-
-            //function: COMPARE MAX ATTR VALUES
-            //MAKE FUNCTION FOR aLL 3 LINES COMPARE VALUE, GET GREATEST
             y.domain([getRangeMin(data), getRangeMax(data)]);
 
             // Add data line for each attribute

@@ -447,3 +447,16 @@ C:\Users\Leo-PC\Documents\GitHub\smeta\SMETA.Web\SMETA.Web\bin\MongoDB.Bson.xml
 C:\Users\Leo-PC\Documents\GitHub\smeta\SMETA.Web\SMETA.Web\bin\MongoDB.Driver.Core.xml
 C:\Users\Leo-PC\Documents\GitHub\smeta\SMETA.Web\SMETA.Web\bin\Microsoft.Threading.Tasks.xml
 C:\Users\Leo-PC\Documents\GitHub\smeta\SMETA.Web\SMETA.Web\bin\Microsoft.Threading.Tasks.Extensions.xml
+H:\smeta\SMETA.Web\SMETA.Web\bin\SMETA.DataAccess.dll
+H:\smeta\SMETA.Web\SMETA.Web\bin\MongoDB.Driver.dll
+H:\smeta\SMETA.Web\SMETA.Web\bin\MongoDB.Bson.dll
+H:\smeta\SMETA.Web\SMETA.Web\bin\Tweetinvi.dll
+H:\smeta\SMETA.Web\SMETA.Web\bin\MongoDB.Driver.Core.dll
+H:\smeta\SMETA.Web\SMETA.Web\bin\Microsoft.Threading.Tasks.dll
+H:\smeta\SMETA.Web\SMETA.Web\bin\Microsoft.Threading.Tasks.Extensions.dll
+H:\smeta\SMETA.Web\SMETA.Web\bin\SMETA.DataAccess.pdb
+H:\smeta\SMETA.Web\SMETA.Web\bin\MongoDB.Driver.xml
+H:\smeta\SMETA.Web\SMETA.Web\bin\MongoDB.Bson.xml
+H:\smeta\SMETA.Web\SMETA.Web\bin\MongoDB.Driver.Core.xml
+H:\smeta\SMETA.Web\SMETA.Web\bin\Microsoft.Threading.Tasks.xml
+H:\smeta\SMETA.Web\SMETA.Web\bin\Microsoft.Threading.Tasks.Extensions.xml

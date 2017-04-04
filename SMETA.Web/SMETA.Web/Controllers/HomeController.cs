@@ -46,12 +46,15 @@ namespace SMETA.Web.Controllers
         }
         
         [HttpGet]
-        public JsonResult GetData()
+        public JsonResult GetData(/*DateTime startDate, DateTime endDate, string query*/)
         {
             PostRepository postRepository = new PostRepository();
-
-            //instead of getallposts() use the filtered versions instead
-            List<Post> posts = postRepository.GetAllPosts();
+            PostFilter filter = new PostFilter();
+            //filter.StartDate = startDate;
+            //filter.EndDate = endDate;
+            //filter.Query = query;
+            
+            List<Post> posts = postRepository.GetPosts(filter);
 
             var vm = posts.GroupBy(x => 
             {

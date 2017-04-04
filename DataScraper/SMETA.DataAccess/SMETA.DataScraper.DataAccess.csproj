@@ -91,6 +91,7 @@
     <Compile Include="Configuration.cs" />
     <Compile Include="Models\Date.cs" />
     <Compile Include="Models\Post.cs" />
+    <Compile Include="Models\PostFilter.cs" />
     <Compile Include="Models\SentimentScore.cs" />
     <Compile Include="Repositories\PostRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -7,7 +7,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Date &amp; Time Filters</h4>
+                <h4 class="modal-title">Date &amp; Time Filter</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal">
@@ -40,25 +40,25 @@
     </div>
 </div>
 
-<div class="modal fade" id="Filter_DateTime" tabindex="-1" role="dialog">
+<div class="modal fade" id="Filter_Query" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Date &amp; Time Filters</h4>
+                <h4 class="modal-title">Query Filters</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal">
                     <div class="form-group">
                         <label>Search Term/Phrase</label>
-                        <input id="FilterAttr_Search" type="text" class="form-control" placeholder="Example" />
+                        <input id="FilterAttr_Query" type="text" class="form-control" placeholder="Example" />
                     </div>
                    </form>
                 <div class="clearfix"></div>
             </div>
             <div class="modal-footer">
-                <button id="Apply_Search" class="btn btn-success">Apply</button>
-                <button id="Clear_Search" class="btn btn-danger">Clear</button>
+                <button id="Apply_Query" class="btn btn-success">Apply</button>
+                <button id="Clear_Query" class="btn btn-danger">Clear</button>
             </div>
         </div>
     </div>
@@ -76,17 +76,11 @@
                 <li class="text-muted menu-title">Navigation</li>
 
                 <li class="has_sub">
-                    <a href="#" onclick="$('#Filter_DateTime').modal('show');" class="waves-effect"><i class="icon-clock"></i> <span> Date &amp; Time Filters </span> <span class="menu-arrow"></span></a>
+                    <a href="#" onclick="$('#Filter_DateTime').modal('show');" class="waves-effect"><i class="icon-clock"></i> <span> Date &amp; Time Filter </span> <span class="menu-arrow"></span></a>
                 </li>
 
                 <li class="has_sub">
-                    <a href="javascript:void(0);" class="waves-effect"><i class="icon-magnifier"></i> <span> Search Words/Phrases </span> <span class="menu-arrow"></span></a>
-                    <ul class="list-unstyled">
-                        <li style="padding: 20px; width: 200px;">
-                            <input type="text" class="form-control" placeholder="Word/phrase Search">
-                            <button class="btn-default">Submit</button>
-                        </li>
-                    </ul>
+                    <a href="#" onclick="$('#Filter_Query').modal('show');" class="waves-effect"><i class="icon-magnifier"></i> <span> Query Filter </span> <span class="menu-arrow"></span></a>
                 </li>
 
             </ul>
@@ -144,6 +138,22 @@
                 $("#FilterAttr_EndDate").val("");
                 $("#FilterAttr_Interval").val("day");
             });
+
+            $("#Clear_Query").click(function () {
+                $("#FilterAttr_Query").val("");
+            })
+
+            $("#Apply_DateTime").click(function () {
+                $("#Apply_DateTime").addClass("disabled");
+                //Update Function
+                $("#Apply_DateTime").removeClass("disabled");
+            })
+
+            $("#Apply_Query").click(function () {
+                $("#Apply_Query").addClass("disabled");
+                //Update Function
+                $("#Apply_Query").removeClass("disabled");
+            })
         });
     </script>
 }

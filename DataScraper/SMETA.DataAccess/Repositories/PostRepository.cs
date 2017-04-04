@@ -8,6 +8,7 @@ using MongoDB.Bson;
 using MongoDB.Driver.Linq; //for querying
 
 using SMETA.DataAccess.Models;
+using System.Text.RegularExpressions;
 
 namespace SMETA.DataAccess.Repositories
 {
@@ -46,28 +47,15 @@ namespace SMETA.DataAccess.Repositories
             return collection.Find(x => true).FirstOrDefault();
         }
 
-        //function to query based on search filter
-        public List<Post> GetSearchPost(String searchTerms) //throws some exception if query fails
+        public List<Post> GetPosts(PostFilter filter)
         {
-            IMongoCollection<Post> collection = _database.GetCollection<Post>("posts");
+            var queryable = _database.GetCollection<Post>("posts").AsQueryable<Post>();
             var result =
-                from x in collection.AsQueryable<Post>()
-                where x.Text.Contains(searchTerms)
+                from x in queryable
+                where Regex.IsMatch(x.Text, filter.Query, RegexOptions.IgnoreCase) && x.PostedDate >= filter.StartDate && x.PostedDate <= filter.EndDate
                 select x;
-                   
+
             return result.ToList();
         }
-
-        ////function to 
-        //public List<Post> GetDatePost(Date dateFilter)
-        //{
-        //    IMongoCollection<Post> collection = _database.GetCollection<Post>("posts");
-        //    var result =
-        //        from x in collection.AsQueryable<Post>()
-        //        where x.PostedDate > dateFilter.Start && x.PostedDate <= dateFilter.End
-        //        select x;
-
-        //    return result.ToList();
-        //}
     }
 }

@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SMETA.Web;
 using SMETA.Web.Controllers;
+using SMETA.DataAccess.Repositories;
+using SMETA.DataAccess.Models;
 
 namespace SMETA.Web.Tests.Controllers
 {
@@ -13,57 +15,29 @@ namespace SMETA.Web.Tests.Controllers
     public class HomeControllerTest
     {
         [TestMethod]
-        public void Index()
+        public void SearchFilterTest()
         {
-            // Arrange
-            HomeController controller = new HomeController();
+            PostRepository postRepository = new PostRepository();
+            PostFilter filter = new PostFilter();
+            int unfilteredResultsCount = postRepository.GetPosts(filter).Count;
 
-            // Act
-            ViewResult result = controller.Index() as ViewResult;
+            filter.Query = "Trump";
+            int filteredResultsCount = postRepository.GetPosts(filter).Count;
 
-            // Assert
-            Assert.IsNotNull(result);
+            Assert.IsTrue(unfilteredResultsCount > filteredResultsCount);
         }
 
         [TestMethod]
-        public void About()
+        public void DateFilterTest()
         {
-            // Arrange
-            HomeController controller = new HomeController();
+            PostRepository postRepository = new PostRepository();
+            PostFilter filter = new PostFilter();
+            int unfilteredResultsCount = postRepository.GetPosts(filter).Count;
 
-            // Act
-            ViewResult result = controller.About() as ViewResult;
+            filter.StartDate = DateTime.Today;
+            int filteredResultsCount = postRepository.GetPosts(filter).Count;
 
-            // Assert
-            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
-        }
-
-        [TestMethod]
-        public void Contact()
-        {
-            // Arrange
-            HomeController controller = new HomeController();
-
-            // Act
-            ViewResult result = controller.Contact() as ViewResult;
-
-            // Assert
-            Assert.IsNotNull(result);
-        }
-
-        [TestMethod]
-        public void SearchFilter()
-        {
-            // Arrange
-            //find query result failure return value
-
-        }
-
-        [TestMethod]
-        public void DateFilter()
-        {
-            //validation check on submit
-            //same as search filter, figure out where queries are
+            Assert.IsTrue(unfilteredResultsCount > filteredResultsCount);
         }
     }
 }

@@ -434,3 +434,16 @@ C:\Users\Leo\Documents\GitHub\SMETA\SMETA.Web\SMETA.Web\bin\Microsoft.Threading.
 C:\Users\Leo\Documents\GitHub\SMETA\SMETA.Web\SMETA.Web\obj\Debug\SMETA.Web.csprojResolveAssemblyReference.cache
 C:\Users\Leo\Documents\GitHub\SMETA\SMETA.Web\SMETA.Web\obj\Debug\SMETA.Web.dll
 C:\Users\Leo\Documents\GitHub\SMETA\SMETA.Web\SMETA.Web\obj\Debug\SMETA.Web.pdb
+C:\Users\Leo-PC\Documents\GitHub\smeta\SMETA.Web\SMETA.Web\bin\SMETA.DataAccess.dll
+C:\Users\Leo-PC\Documents\GitHub\smeta\SMETA.Web\SMETA.Web\bin\MongoDB.Driver.dll
+C:\Users\Leo-PC\Documents\GitHub\smeta\SMETA.Web\SMETA.Web\bin\MongoDB.Bson.dll
+C:\Users\Leo-PC\Documents\GitHub\smeta\SMETA.Web\SMETA.Web\bin\Tweetinvi.dll
+C:\Users\Leo-PC\Documents\GitHub\smeta\SMETA.Web\SMETA.Web\bin\MongoDB.Driver.Core.dll
+C:\Users\Leo-PC\Documents\GitHub\smeta\SMETA.Web\SMETA.Web\bin\Microsoft.Threading.Tasks.dll
+C:\Users\Leo-PC\Documents\GitHub\smeta\SMETA.Web\SMETA.Web\bin\Microsoft.Threading.Tasks.Extensions.dll
+C:\Users\Leo-PC\Documents\GitHub\smeta\SMETA.Web\SMETA.Web\bin\SMETA.DataAccess.pdb
+C:\Users\Leo-PC\Documents\GitHub\smeta\SMETA.Web\SMETA.Web\bin\MongoDB.Driver.xml
+C:\Users\Leo-PC\Documents\GitHub\smeta\SMETA.Web\SMETA.Web\bin\MongoDB.Bson.xml
+C:\Users\Leo-PC\Documents\GitHub\smeta\SMETA.Web\SMETA.Web\bin\MongoDB.Driver.Core.xml
+C:\Users\Leo-PC\Documents\GitHub\smeta\SMETA.Web\SMETA.Web\bin\Microsoft.Threading.Tasks.xml
+C:\Users\Leo-PC\Documents\GitHub\smeta\SMETA.Web\SMETA.Web\bin\Microsoft.Threading.Tasks.Extensions.xml

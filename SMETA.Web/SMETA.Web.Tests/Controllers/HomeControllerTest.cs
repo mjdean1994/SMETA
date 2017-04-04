@@ -50,5 +50,13 @@ namespace SMETA.Web.Tests.Controllers
             // Assert
             Assert.IsNotNull(result);
         }
+
+        [TestMethod]
+        public void SearchFilter()
+        {
+            // Arrange
+            //find query result failure return value
+
+        }
     }
 }

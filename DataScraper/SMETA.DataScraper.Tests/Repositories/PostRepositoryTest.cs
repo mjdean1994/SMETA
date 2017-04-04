@@ -4,6 +4,7 @@ using SMETA.DataScraper;
 using SMETA.DataAccess;
 using MongoDB.Driver;
 using System.Security.Authentication;
+using SMETA.DataAccess.Repositories;
 
 namespace SMETA.DataScraper.Tests.Repositories
 {
@@ -26,6 +27,13 @@ namespace SMETA.DataScraper.Tests.Repositories
             database = client.GetDatabase(Configuration.POST_DB_NAME);
 
             Assert.IsNotNull(database);
+        }
+
+        [TestMethod]
+        public void SelectFromMongoDbTest()
+        {
+            PostRepository postRepository = new PostRepository();
+            Assert.IsNotNull(postRepository.GetSinglePost());
         }
     }
 }

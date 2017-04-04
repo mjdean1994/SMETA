@@ -203,7 +203,6 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\TweetData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\DataViewModel.cs" />
@@ -266,8 +265,6 @@
     <Content Include="fonts\weathericons-regular-webfont.ttf" />
     <Content Include="fonts\weathericons-regular-webfont.woff" />
     <Content Include="fonts\weathericons-regular-webfont.woff2" />
-    <Content Include="SampleData\data.csv" />
-    <Content Include="SampleData\data.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\detect.js" />
     <Content Include="Scripts\fastclick.js" />

@@ -8,11 +8,19 @@ namespace SMETA.DataScraper.Tests.Services
     public class SentimentAnalysisServiceTest
     {
         [TestMethod]
-        public void ConnectionStringTest()
+        public void SentimentAnalysisApiTest()
         {
             var response = SentimentAnalysisService.GetSentiment("I'm so happy today!");
             
             Assert.IsNotNull(response);
+        }
+
+        [TestMethod]
+        public void SentimentAnalysisAccuracyTest()
+        {
+            var response = SentimentAnalysisService.GetSentiment("I'm so happy today!");
+
+            Assert.IsTrue(response.probability.pos > response.probability.neg);
         }
     }
 }

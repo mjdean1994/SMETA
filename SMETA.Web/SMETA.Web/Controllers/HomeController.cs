@@ -44,11 +44,13 @@ namespace SMETA.Web.Controllers
 
             return Json(new { success = true });
         }
-
+        
         [HttpGet]
         public JsonResult GetData()
         {
             PostRepository postRepository = new PostRepository();
+
+            //instead of getallposts() use the filtered versions instead
             List<Post> posts = postRepository.GetAllPosts();
 
             var vm = posts.GroupBy(x => 
@@ -70,5 +72,7 @@ namespace SMETA.Web.Controllers
 
             return Json(vm, JsonRequestBehavior.AllowGet);
         }
+
+        
     }
 }

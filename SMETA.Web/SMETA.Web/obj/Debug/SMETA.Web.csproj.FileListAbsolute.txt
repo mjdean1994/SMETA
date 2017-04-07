@@ -460,3 +460,5 @@ H:\smeta\SMETA.Web\SMETA.Web\bin\MongoDB.Bson.xml
 H:\smeta\SMETA.Web\SMETA.Web\bin\MongoDB.Driver.Core.xml
 H:\smeta\SMETA.Web\SMETA.Web\bin\Microsoft.Threading.Tasks.xml
 H:\smeta\SMETA.Web\SMETA.Web\bin\Microsoft.Threading.Tasks.Extensions.xml
+H:\smeta\SMETA.Web\SMETA.Web\bin\Autofac.dll
+H:\smeta\SMETA.Web\SMETA.Web\bin\Autofac.xml

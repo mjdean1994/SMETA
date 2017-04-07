@@ -10,7 +10,7 @@
                 <h4 class="modal-title">Date &amp; Time Filter</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal">
+                <form class="form-horizontal" action="#">
                     <div class="form-group">
                         <label>Start Date</label>
                         <input id="FilterAttr_StartDate" type="text" class="form-control" placeholder="MM/DD/YYYY" />
@@ -22,9 +22,8 @@
                     <div class="form-group">
                         <label>Interval</label>
                         <select id="FilterAttr_Interval" class="form-control">
-                            <option value="minute">Minute</option>
-                            <option value="hour">Hour</option>
-                            <option selected value="day">Day</option>
+                            <option selected value="hour">Hour</option>
+                            <option value="day">Day</option>
                             <option value="month">Month</option>
                             <option value="year">Year</option>
                         </select>
@@ -48,7 +47,7 @@
                 <h4 class="modal-title">Query Filters</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal">
+                <form class="form-horizontal" action="#">
                     <div class="form-group">
                         <label>Search Term/Phrase</label>
                         <input id="FilterAttr_Query" type="text" class="form-control" placeholder="Example" />
@@ -59,6 +58,35 @@
             <div class="modal-footer">
                 <button id="Apply_Query" class="btn btn-success">Apply</button>
                 <button id="Clear_Query" class="btn btn-danger">Clear</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="Filter_Username" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Username Filter</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" action="#">
+                    <div class="form-group">
+                        <label>Username</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-at"></i>
+                            </span>
+                            <input id="FilterAttr_Username" type="text" class="form-control" placeholder="Username" />
+                        </div>
+                    </div>
+                </form>
+                <div class="clearfix"></div>
+            </div>
+            <div class="modal-footer">
+                <button id="Apply_Username" class="btn btn-success">Apply</button>
+                <button id="Clear_Username" class="btn btn-danger">Clear</button>
             </div>
         </div>
     </div>
@@ -83,6 +111,10 @@
                     <a href="#" onclick="$('#Filter_Query').modal('show');" class="waves-effect"><i class="icon-magnifier"></i> <span> Query Filter </span> <span class="menu-arrow"></span></a>
                 </li>
 
+                <li class="has_sub">
+                    <a href="#" onclick="$('#Filter_Username').modal('show');" class="waves-effect"><i class="icon-social-twitter"></i> <span> Username Filter </span> <span class="menu-arrow"></span></a>
+                </li>
+
             </ul>
             <div class="clearfix"></div>
         </div>
@@ -95,25 +127,9 @@
     <div class="content">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 hidden-xs">
-                    <div class="widget-bg-color-icon card-box">
-                        <div class="bg-icon bg-icon-success pull-left">
-                            <i class="glyphicon glyphicon-arrow-up text-success"></i>
-                        </div>
-                        <div class="text-right">
-                            <h3 class="text-dark"><b class="counter">+0.5% Sentiment</b></h3>
-                            <p>
-                                <button id="graphView" class="btn btn-default" onclick="switchGraphData()">Split</button>
-                            </p>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
                 <div class="col-lg-12">
                     <div class="widget-bg-color-icon card-box" id="graph">
-                        <h3>Tweet Positivity Over Time <span id="loading" class="hidden"><i class="fa fa-spin fa-spinner"></i></span></h3>
+                        <h3>Tweet Positivity Over Time <span id="loading"><i class="fa fa-spin fa-spinner"></i></span></h3>
                         <script>getGraph();</script>
                         <!--put in legends-->
                         <!--load DEFAULT graph, changing fiter options-->
@@ -136,19 +152,52 @@
             $("#Clear_DateTime").click(function () {
                 $("#FilterAttr_StartDate").val("");
                 $("#FilterAttr_EndDate").val("");
-                $("#FilterAttr_Interval").val("day");
+                $("#FilterAttr_Interval").val("hour");
             });
 
             $("#Clear_Query").click(function () {
                 $("#FilterAttr_Query").val("");
             })
 
+            $("#Clear_Username").click(function () {
+                $("#FilterAttr_Username").val("");
+            })
+
             $("#Apply_DateTime").click(function () {
                 getGraph();
+                $("#Filter_DateTime").modal("hide");
             })
 
             $("#Apply_Query").click(function () {
                 getGraph();
+                $("#Filter_Query").modal("hide");
+            })
+
+            $("#Apply_Username").click(function () {
+                getGraph();
+                $("#Filter_Username").modal("hide");
+            })
+
+            $("#FilterAttr_EndDate").keypress(function (e) {
+                if(e.which == 13)
+                {
+                    getGraph();
+                    $("#Filter_DateTime").modal("hide");
+                }
+            })
+
+            $("#FilterAttr_Query").keypress(function (e) {
+                if (e.which == 13) {
+                    getGraph();
+                    $("#Filter_Query").modal("hide");
+                }
+            })
+
+            $("#FilterAttr_Username").keypress(function (e) {
+                if (e.which == 13) {
+                    getGraph();
+                    $("#Filter_Username").modal("hide");
+                }
             })
         });
     </script>

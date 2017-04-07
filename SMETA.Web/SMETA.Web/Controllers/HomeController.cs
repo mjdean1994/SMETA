@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using SMETA.DataAccess.Repositories;
 using SMETA.DataAccess.Models;
 using SMETA.Web.ViewModels;
+using SMETA.Web.Services;
 
 namespace SMETA.Web.Controllers
 {
@@ -46,24 +47,37 @@ namespace SMETA.Web.Controllers
         }
         
         [HttpPost]
-        public JsonResult GetData(DateTime startDate, DateTime endDate, String query)
+        public JsonResult GetData(DateTime startDate, DateTime endDate, string query, string interval, string username)
         {
             PostRepository postRepository = new PostRepository();
             PostFilter filter = new PostFilter();
             filter.StartDate = startDate;
             filter.EndDate = endDate;
             filter.Query = query;
+            filter.Username = username;
             
             List<Post> posts = postRepository.GetPosts(filter);
 
-            var vm = posts.GroupBy(x => 
+            IEnumerable<IGrouping<DateTime, Post>> group;
+
+            if(interval == "hour")
             {
-                var stamp = x.PostedDate;
-                stamp = stamp.AddMinutes(-stamp.Minute);
-                stamp = stamp.AddSeconds(-stamp.Second);
-                stamp = stamp.AddMilliseconds(-stamp.Millisecond);
-                return stamp;
-            })
+                group = GroupingService.GroupByHour(posts);
+            }
+            else if(interval == "day")
+            {
+                group = GroupingService.GroupByDay(posts);
+            }
+            else if(interval == "month")
+            {
+                group = GroupingService.GroupByMonth(posts);
+            }
+            else
+            {
+                group = GroupingService.GroupByYear(posts);
+            }
+
+            var vm = group
             .Select(y => new DataViewModel
             {
                 date = y.Key.ToString("dd-MMM-yy HH:mm"),

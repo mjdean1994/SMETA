@@ -6,12 +6,13 @@ function getGraph() {
 
     // Remove existing graph, if applicable
     $("#graphBase").remove();
-    $("#graphTooltip").remove();
     $("#loading").removeClass("hidden");
 
     var startDate = $("#FilterAttr_StartDate").val();
     var endDate = $("#FilterAttr_EndDate").val();
     var query = $("#FilterAttr_Query").val();
+    var interval = $("#FilterAttr_Interval").val();
+    var username = $("#FilterAttr_Username").val();
 
     if (startDate == "" || startDate == null)
     {
@@ -51,20 +52,9 @@ function getGraph() {
         .x(function (d) { return x(d.date); })
         .y(function (d) { return y(d.positivity); });
 
-    var negative_line = d3.svg.line()
-        .x(function (d) { return x(d.date); })
-        .y(function (d) { return y(d.negativity); });
-
     var neutral_line = d3.svg.line()
         .x(function (d) { return x(d.date); })
         .y(function (d) { return y(d.neutrality); });
-
-    // Add tooltip div
-    var tooltip = d3.select("#graph")
-        .append("div")
-        .attr("class", "tooltip")
-        .attr("id","graphTooltip")
-        .style("opacity", 0);
 
     // Adds the svg canvas
     //REPLACE INSTEAD OF APPEND
@@ -83,9 +73,14 @@ function getGraph() {
     d3.xhr("../home/getdata")
     .header("Content-Type", "application/json")
     .post(
-        JSON.stringify({ startDate: startDate, endDate: endDate, query: query }),
+        JSON.stringify({ startDate: startDate, endDate: endDate, query: query, interval: interval, username: username }),
         function (error, data) {
             var jsonData = JSON.parse(data.response);
+
+            if (jsonData.length <= 0)
+            {
+                toastr.error("No results found with the selected filters.");
+            }
 
             $.each(jsonData, function (index, value) {
                 value.date = parseDate(value.date);
@@ -98,14 +93,6 @@ function getGraph() {
             // Add data line for each attribute
             drawLine(svg, neutral_line, jsonData, "neutrality");
             drawLine(svg, positive_line, jsonData, "positivity");
-            drawLine(svg, negative_line, jsonData, "negativity");
-
-            /* 
-            * So tooltip can use data values
-            */
-            addScatterPlot(svg, jsonData, "Neutrality", x, y);
-            addScatterPlot(svg, jsonData, "Positivity", x, y);
-            addScatterPlot(svg, jsonData, "Negativity", x, y);
          
 
             //* Add X Axis
@@ -117,11 +104,10 @@ function getGraph() {
             svg.append("g")
                 .call(yAxis);
 
-            // Legends are above on dashboard, change colors
-
+            $("#loading").addClass("hidden");
         });
 
-    $("#loading").addClass("hidden");
+    
 }
 
 
@@ -178,57 +164,6 @@ function drawLine(svg, drawAtt, data, attribute) {
     svg.append("path")
         .attr("class", attribute)
         .attr("d", drawAtt(data));
-}
-
-/*
- * PARAMETERS:
- *   svg - the svg to append to
- *   data - the data
- *   attribute - for displaying in tooltips and determine attribute
- *   getAtt - function to get attribute value
- */
-function addScatterPlot(svg, data, attribute, x, y) {
-
-    // Add tooltip div, MAKE SIZE RESPONSIVE- NOT DONE
-    var tooltip = d3.select("#graph")
-        .append("div")
-        .attr("class", "tooltip")
-        .style("opacity", 0);
-
-    //Format date/time - SEE TOOLTIPS
-    var formatDate = d3.time.format("Date: %x <br/> Time: %H:%M%p");
-
-    return svg.selectAll("dot")
-        .data(data)
-        .enter()
-        .append("circle")
-        .attr("id", "dataPlots")
-        .attr("r", 1) //make it bigger when hovering?
-        .attr("cx", function (d) { return x(d.date); })
-        .attr("cy", function (d) {
-            if (attribute == "Positivity")
-                return y(d.positivity);
-            else if (attribute == "Neutrality")
-                return y(d.neutrality);
-            else
-                return y(d.negativity);
-        })
-        .on("mouseover", function (d) {
-
-            tooltip.transition()
-                .duration(250)
-                .style("opacity", .9);
-
-            tooltip.html(formatDate(d.date) + "<br/>" + attribute + ": " + d.positivity)
-                .style("left", (d3.event.pageX - 70) + "px")
-                .style("top", (d3.event.pageY - 220) + "px");
-
-        })
-        .on("mouseout", function (d) {
-            tooltip.transition()
-                .duration(300)
-                .style("opacity", 0);
-        });
 }
 
 

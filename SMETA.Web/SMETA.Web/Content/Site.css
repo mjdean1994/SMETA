@@ -28,7 +28,6 @@ svg.graph {
 }
 
 path {
-    stroke: #3c9b29;
     stroke-width: 1;
     fill: none;
     pointer-events:all;
@@ -45,29 +44,13 @@ text {
     font-weight:normal;
 }
 
-circle:hover {
-    border-radius: 25px;        
-}
-
 .bold {
     font-weight: bold;
     font-variant: small-caps;
 }
 
-#dataPlots {
-    fill: steelblue;
-}
-
-#dataPlots:hover {
-    width: 10px;
-    height: 10px;
-    fill: black;
-    stroke-width: 8px;
-}
-
 path.domain {
     stroke: black;
-    stroke-width:0.5px;
 }
 
 div.tooltip {	
@@ -84,13 +67,21 @@ div.tooltip {
 }
 
 path.neutrality{
-    stroke:black;
+    stroke:darkgrey;
 }
 
 path.positivity{
-    stroke:forestgreen;
+    stroke:orangered;
 }
 
-path.negativity{
-    stroke:mediumvioletred;
+path.positivity:hover {
+    stroke-width: 2px;
+}
+
+path.neutrality:hover {
+    stroke-width: 2px;
+}
+
+line {
+    opacity: 0.2;
 }

@@ -40,11 +40,15 @@ function getGraph() {
     var xAxis = d3.svg.axis()
         .scale(x)
         .orient("bottom")
+        .innerTickSize(-height)
+        .outerTickSize(0)
         .ticks(5);
 
     var yAxis = d3.svg.axis()
         .scale(y)
         .orient("left")
+        .innerTickSize(-width)
+        .outerTickSize(0)
         .ticks(5);
 
     // Define the line
@@ -57,7 +61,6 @@ function getGraph() {
         .y(function (d) { return y(d.neutrality); });
 
     // Adds the svg canvas
-    //REPLACE INSTEAD OF APPEND
     var svg = d3.select("#graph")
         .append("svg")
         .attr("width", "95%")
@@ -69,6 +72,8 @@ function getGraph() {
         .append("g")
         .attr("transform",
             "translate(" + margin.left + "," + margin.top + ")");
+
+
 
     d3.xhr("../home/getdata")
     .header("Content-Type", "application/json")
@@ -103,6 +108,12 @@ function getGraph() {
             //* Add Y Axis
             svg.append("g")
                 .call(yAxis);
+
+            svg.append("g")
+               .attr("class", "legend")
+               .attr("transform", "translate(50,30)")
+               .style("font-size", "12px")
+               .call(d3.legend);
 
             $("#loading").addClass("hidden");
         });

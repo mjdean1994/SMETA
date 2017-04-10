@@ -52,11 +52,11 @@ function getGraph() {
         .ticks(5);
 
     // Define the line
-    var positive_line = d3.svg.line()
+    var PositiveLine = d3.svg.line()
         .x(function (d) { return x(d.date); })
         .y(function (d) { return y(d.positivity); });
 
-    var neutral_line = d3.svg.line()
+    var NeutralLine = d3.svg.line()
         .x(function (d) { return x(d.date); })
         .y(function (d) { return y(d.neutrality); });
 
@@ -96,8 +96,8 @@ function getGraph() {
             y.domain([getRangeMin(jsonData), getRangeMax(jsonData)]);
 
             // Add data line for each attribute
-            drawLine(svg, neutral_line, jsonData, "neutrality");
-            drawLine(svg, positive_line, jsonData, "positivity");
+            drawLine(svg, NeutralLine, jsonData, "neutrality");
+            drawLine(svg, PositiveLine, jsonData, "positivity");
          
 
             //* Add X Axis

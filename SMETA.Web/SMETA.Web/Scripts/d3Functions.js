@@ -87,9 +87,10 @@ function getGraph() {
                 toastr.error("No results found with the selected filters.");
             }
 
-            $.each(jsonData, function (index, value) {
-                value.date = parseDate(value.date);
-            })
+            $.each(jsonData,
+                function(index, value) {
+                    value.date = parseDate(value.date);
+                });
             
             // Scale the domain and range of the data
             x.domain(d3.extent(jsonData, function (d) { return d.date; }));
@@ -108,12 +109,6 @@ function getGraph() {
             //* Add Y Axis
             svg.append("g")
                 .call(yAxis);
-
-            svg.append("g")
-               .attr("class", "legend")
-               .attr("transform", "translate(50,30)")
-               .style("font-size", "12px")
-               .call(d3.legend);
 
             $("#loading").addClass("hidden");
         });
@@ -177,15 +172,3 @@ function drawLine(svg, drawAtt, data, attribute) {
         .attr("d", drawAtt(data));
 }
 
-
-function switchGraphData() {
-    var elem = document.getElementById("graphView");
-
-    if (elem.textContent == "Compound") {
-        elem.textContent = "Split";
-        //other things
-    } else {
-        elem.textContent = "Compound";
-        //OTHER FUNCTION FOR RELOADING GRAPH
-    }
-}
